@@ -1,12 +1,11 @@
 /*
 
 !.gitignore
+!.gitmodules
 !alacritty/
-!alacritty/
-!fish/
 !fish/
 !i3/
 !picom/
 !polybar/
 !rofi/
-
+!nvim/
