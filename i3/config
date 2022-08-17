@@ -1,16 +1,29 @@
 #needed programs
 #polybar xset rofi picom
-#gnome-screenshot
 #xev xprop fish ripgrep flameshot 
 #ffmpeg (for firefox)
 #tumbler (for thunar)
+
+# tearing screen 
+# (/etc/X11/xorg.conf.d/20-intel.conf)
+# ---
+# Section "Device"
+#  
+#     Identifier "Intel Graphics"
+#  
+#     Driver "intel"
+#  
+#     Option "TearFree" "true"
+#  
+# EndSection
+# ---
 
 #touchpad settings
 #/usr/share/X11/xorg.conf.d/40-libinput.conf
 #Option "NaturalScrolling" "True"
 #Option "Tapping" "on"
 
-set $mod Mod1
+set $mod Mod4
 
 font pango:monospace 11
 
@@ -31,13 +44,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec rofi -show run 
-bindsym $mod+shift+d exec rofi -show 
+bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym $mod+shift+d exec --no-startup-id rofi -show 
 
 # change focus
 bindsym $mod+h focus left
@@ -90,8 +103,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-set $mainScreen "HDMI-2"
-set $secondaryScreen "eDP-1"
+set $mainScreen "HDMI2"
+set $secondaryScreen "eDP1"
 
 # Workspaces to screens
 workspace 1 output $mainScreen
@@ -133,16 +146,13 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-assign [class="firefox"] $ws2
-assign [class="Alacritty"] $ws1
-assign [class="TelegramDesktop"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+e exec --no-startup-id "i3-msg exit"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -187,12 +197,18 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
 
 #lock system
-bindsym $mod+shift+x exec i3lock --color "$bg-color"
-bindsym $mod+n exec xrandr --auto
-bindsym $mod+shift+n exec xrandr --output eDP-1 --auto --right-of HDMI-2
+bindsym $mod+shift+x exec --no-startup-id i3lock --color "$bg-color"
+bindsym $mod+n exec --no-startup-id xrandr --auto
+bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of HDMI2
 
-bindsym Print exec flameshot screen -c
-bindsym shift+Print exec flameshot gui
+# Make the currently focused window a scratchpad
+bindsym $mod+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+Shift+minus scratchpad show
+
+bindsym Print exec --no-startup-id flameshot screen -c
+bindsym shift+Print exec --no-startup-id flameshot gui
+bindsym ctrl+Print exec --no-startup-id flameshot screen -c -p ~/Fedora_HDD/Pictures/screenshots/
 
 # Sreen brightness controls (brightnessctl needed to be installed)
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
@@ -208,6 +224,11 @@ smart_borders on
 
 exec --no-startup-id xdg-user-dirs-update
 
+assign [class="firefox"] $ws2
+#assign [class="Alacritty"] $ws1 #flameshot is not working properly with this option (it opens terminal in first workspace and make noisy show)
+assign [class="TelegramDesktop"] $ws10
+assign [class="Google-chrome"] $ws9
+assign [class="jetbrains-idea-ce"] $ws1
 
 exec_always --no-startup-id killall -q polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -216,9 +237,10 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id firefox
 exec --no-startup-id alacritty
 
-#exec_always --no-startup-id feh --bg-fill --randomize /home/sirmax/Pictures/wallpapers/* 
-exec --no-startup-id ~/.config/i3/wallpaper.sh
-
-exec_always --no-startup-id setxkbmap -layout us,ua && setxkbmap -option 'grp:alt_caps_toggle'
 exec_always --no-startup-id xset r rate 220 20
 exec_always --no-startup-id picom &
+
+exec_always --no-startup-id setxkbmap -layout us,ua -option 'grp:alt_caps_toggle,altwin:swap_alt_win'
+
+exec_always --no-startup-id feh --bg-fill --randomize /home/sirmax/Fedora_HDD/Pictures/wallpapers/* 
+exec --no-startup-id ~/.config/i3/wallpaper.sh
