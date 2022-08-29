@@ -201,6 +201,9 @@ bindsym $mod+shift+x exec --no-startup-id i3lock --color "$bg-color"
 bindsym $mod+n exec --no-startup-id xrandr --auto
 bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of HDMI2
 
+# suspend system
+bindsym $mod+shift+s exec --no-startup-id systemctl suspend
+
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
 # Show the first scratchpad window
@@ -229,6 +232,7 @@ assign [class="firefox"] $ws2
 assign [class="TelegramDesktop"] $ws10
 assign [class="Google-chrome"] $ws9
 assign [class="jetbrains-idea-ce"] $ws1
+assign [instance="Godot_Engine"] $ws8
 
 exec_always --no-startup-id killall -q polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
