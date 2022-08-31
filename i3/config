@@ -29,7 +29,7 @@ font pango:monospace 11
 
 exec --no-startup-id dex-autostart --autostart --environment i3
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color "$bg-color" --nofork
 
 exec --no-startup-id nm-applet
 
@@ -119,8 +119,8 @@ workspace 9 output $secondaryScreen
 workspace 10 output $secondaryScreen
 
 # Switch to output
-bindsym $mod+shift+m focus output $mainScreen
-bindsym $mod+shift+p focus output $secondaryScreen
+bindsym $mod+m focus output $mainScreen
+bindsym $mod+shift+m focus output $secondaryScreen
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
