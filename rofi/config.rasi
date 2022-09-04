@@ -4,7 +4,6 @@
  */
 
 configuration {
-
   display-drun: "Applications";
   display-window: "Windows";
   display-run: "Run";
@@ -15,7 +14,6 @@ configuration {
 
 
 * {
-
   bg: #141414E6;
   bg-alt: #E3AE2DE6;
   placeholder: #14141480;
@@ -31,13 +29,14 @@ configuration {
   highlight:     underline bold #ffffff;
 
   transparent: rgba(0,0,0,0);
-  font: "Source Code Pro 11";
+  /* font: "Source Code Pro 13"; */
+  font: "Fira Code 11.5";
 }
 
 #window {
     location: center;
     anchor:   center;
-    transparency: "screenshot";
+
     border:  0px;
     border-radius: 5px;
     background-color: @transparent;
@@ -48,36 +47,52 @@ configuration {
 }
 
 #inputbar {
-    padding: 11px;
+    padding: 15px;
     background-color: @bg-alt;
-    border-radius:  7px 7px 0px 0px;
+    border-radius:  7px;
     children: [prompt, entry];
 }
   
 prompt {
+  font: "Fira Code medium 12.5";
   margin: 0 10;
   text-color: @bg;
 }
 
+entry {
+  font: "Fira Code 12.5";
+  text-color: @bg;
+  placeholder-color: @placeholder;
+}
+
 #listview {
+    lines: 10;
+    dynamic: true;
+    fixed-height: false;
+
     padding: 8px;
-    border-radius: 0px 0px 7px 7px;
+    border-radius: 7px;
+    margin: 5px;
     border: 0px;
     background-color: @bg;
-    lines: 10;
+}
+
+scrollbar {
+    background-color: @bg;
+    handle-color:  @bg-alt;
 }
 
 #element {
     padding: 7 5;
     vertical-align: 0.5;
     border-radius: 5px;
-    background-color: red;
 }
 
 element-text {
   text-color: @fg-alt;
   vertical-align: 0.5;
 }
+
 element-text selected{
   text-color: @fg;
 }
@@ -85,15 +100,12 @@ element-text selected{
 #element selected.normal {
     background-color: transparent;
 }
-
 #element normal active {
     background-color: transparent;
 }
-
 #element normal { 
     background-color: transparent;
 }
-
 #element alternate normal {
     background-color: transparent;
 }
@@ -103,8 +115,8 @@ element-text selected{
 #element normal normal {
     background-color: transparent;
 }
-/*
 
+/*
 #element alternate normal {
 }
 #element alternate active {
@@ -117,14 +129,9 @@ element-text selected{
     background-color: @lightred;
     foreground: @dark;
 }
-
 */
 
 element-icon {
   size: 25;
 }
 
-entry {
-  text-color: @bg;
-  placeholder-color: @placeholder;
-}
