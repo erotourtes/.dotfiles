@@ -38,7 +38,8 @@ configuration {
     anchor:   center;
 
     border:  0px;
-    border-radius: 5px;
+    border-radius: 7px;
+    padding: 0;
     background-color: @transparent;
 }
 
@@ -72,7 +73,8 @@ entry {
 
     padding: 8px;
     border-radius: 7px;
-    margin: 5px;
+    margin: 5px 0px 0 0px;
+    /* margin: 5px; */
     border: 0px;
     background-color: @bg;
 }

@@ -23,6 +23,18 @@
 #Option "NaturalScrolling" "True"
 #Option "Tapping" "on"
 
+# Firefox settings
+# ~/home/name/.mozilla/firefox/tvhki6r5.default-release/chrome/userChrome.css
+# 
+# /* Hide horizontal tabs at the top of the window */
+# #tabbrowser-tabs {
+#  visibility: collapse !important;
+# }
+# /* Hide tree-style-tab header */
+# #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#  display: none;
+# }
+
 set $mod Mod4
 
 font pango:monospace 11
@@ -108,7 +120,7 @@ set $secondaryScreen "eDP1"
 
 # Workspaces to screens
 workspace 1 output $mainScreen
-workspace 2 output $secondaryScreen
+workspace 2 output $mainScreen
 workspace 3 output $mainScreen
 workspace 4 output $mainScreen
 workspace 5 output $mainScreen
@@ -200,6 +212,7 @@ client.background       #FFFFFF
 bindsym $mod+shift+x exec --no-startup-id i3lock --color "$bg-color"
 bindsym $mod+n exec --no-startup-id xrandr --auto
 bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of HDMI2
+bindsym $mod+Control+n exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
 
 # suspend system
 bindsym $mod+shift+s exec --no-startup-id systemctl suspend
@@ -242,7 +255,7 @@ exec --no-startup-id firefox
 exec --no-startup-id alacritty
 
 exec_always --no-startup-id xset r rate 220 20
-exec_always --no-startup-id picom &
+exec_always --no-startup-id picom --experimental-backends &
 
 exec_always --no-startup-id setxkbmap -layout us,ua -option 'grp:alt_caps_toggle,altwin:swap_alt_win'
 
