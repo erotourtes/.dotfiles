@@ -73,8 +73,8 @@ entry {
 
     padding: 8px;
     border-radius: 7px;
-    margin: 5px 0px 0 0px;
-    /* margin: 5px; */
+    /* margin: 5px 0px 0 0px; */
+    margin: 5px;
     border: 0px;
     background-color: @bg;
 }

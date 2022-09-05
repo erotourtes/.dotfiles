@@ -235,7 +235,8 @@ for_window [class=".*"] border pixel 1
 gaps inner 7
 gaps outer -2
 gaps left 2
-gaps top 2
+# gaps top 2
+gaps bottom 2
 smart_borders on
 
 exec --no-startup-id xdg-user-dirs-update
@@ -255,7 +256,7 @@ exec --no-startup-id firefox
 exec --no-startup-id alacritty
 
 exec_always --no-startup-id xset r rate 220 20
-exec_always --no-startup-id picom --experimental-backends &
+exec_always --no-startup-id picom &
 
 exec_always --no-startup-id setxkbmap -layout us,ua -option 'grp:alt_caps_toggle,altwin:swap_alt_win'
 
