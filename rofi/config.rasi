@@ -95,43 +95,49 @@ element-text {
   vertical-align: 0.5;
 }
 
+
+/* Selected element */
+#element selected.normal {
+    background-color: transparent;
+}
 element-text selected{
   text-color: @fg;
 }
 
-#element selected.normal {
+
+/* for active window*/
+element-text active {
+    text-color: @bg-alt;
+}
+element alternate active {
+  background-color: transparent;
+}
+element normal active {
     background-color: transparent;
 }
-#element normal active {
-    background-color: transparent;
-}
-#element normal { 
-    background-color: transparent;
-}
-#element alternate normal {
-    background-color: transparent;
-}
-#element selected active {
-    background-color: transparent;
-}
-#element normal normal {
-    background-color: transparent;
+element selected active {
+  background-color: transparent;
 }
 
-/*
-#element alternate normal {
+
+/* Normal element */
+element normal normal {
+    background-color: transparent;
 }
-#element alternate active {
-    foreground: @lightblue;
+element alternate normal {
+  background-color: transparent;
 }
-#element alternate urgent {
-    foreground: @lightred;
+
+/* Urgent element */
+element urgent {
+    background-color: transparent;
 }
-#element selected urgent {
-    background-color: @lightred;
-    foreground: @dark;
+element alternate urgent {
+    background-color: transparent;
 }
-*/
+element selected urgent {
+    background-color: transparent;
+}
 
 element-icon {
   size: 25;

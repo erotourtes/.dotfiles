@@ -2,6 +2,7 @@
 
 !.gitignore
 !.gitmodules
+!git-delta.ini
 !alacritty/
 !fish/
 !i3/
