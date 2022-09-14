@@ -1,8 +1,11 @@
 #needed programs
-#polybar xset rofi picom
-#xev xprop fish ripgrep flameshot 
-#ffmpeg (for firefox)
-#tumbler (for thunar)
+# neovim ripgrep bat git-delta exa btop fzf fish alacritty
+# xset xinput
+# polybar rofi picom 
+# flameshot sxiv
+# xev xprop 
+# ffmpeg (for firefox)
+# tumbler (for thunar)
 
 # tearing screen 
 # (/etc/X11/xorg.conf.d/20-intel.conf)
@@ -63,6 +66,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec --no-startup-id rofi -show drun 
 bindsym $mod+shift+d exec --no-startup-id rofi -show 
+bindsym $mod+shift+f exec --no-startup-id fish ~/.config/i3/scripts/list-scripts.fish
 
 # change focus
 bindsym $mod+h focus left
@@ -222,9 +226,9 @@ bindsym $mod+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+Shift+minus scratchpad show
 
-bindsym Print exec --no-startup-id flameshot screen -c
+bindsym Print exec --no-startup-id flameshot screen -c -n 0
 bindsym shift+Print exec --no-startup-id flameshot gui
-bindsym ctrl+Print exec --no-startup-id flameshot screen -c -p ~/Fedora_HDD/Pictures/screenshots/
+bindsym ctrl+Print exec --no-startup-id flameshot screen -c -n 0 -p ~/Fedora_HDD/Pictures/screenshots/
 
 # Sreen brightness controls (brightnessctl needed to be installed)
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
@@ -256,9 +260,11 @@ exec --no-startup-id firefox
 exec --no-startup-id alacritty
 
 exec_always --no-startup-id xset r rate 220 20
+exec --no-startup-id xinput --set-prop "Asus TouchPad" "libinput Accel Speed" 0.3
 exec_always --no-startup-id picom &
 
 exec_always --no-startup-id setxkbmap -layout us,ua -option 'grp:alt_caps_toggle,altwin:swap_alt_win'
 
 exec_always --no-startup-id feh --bg-fill --randomize /home/sirmax/Fedora_HDD/Pictures/wallpapers/* 
 exec --no-startup-id ~/.config/i3/scripts/wallpaper.fish
+
