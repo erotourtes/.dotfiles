@@ -214,6 +214,7 @@ client.background       #FFFFFF
 
 #lock system
 bindsym $mod+shift+x exec --no-startup-id i3lock --color "$bg-color"
+# bindsym $mod+shift+x exec --no-startup-id fish ~/.config/i3/scripts/i3lock-blur.fish
 bindsym $mod+n exec --no-startup-id xrandr --auto
 bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of HDMI2
 bindsym $mod+Control+n exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
@@ -237,10 +238,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 hide_edge_borders both
 for_window [class=".*"] border pixel 1
 gaps inner 7
-gaps outer -2
-gaps left 2
-gaps top 2
-# gaps bottom 2
+gaps outer 3
+gaps top -1
+gaps bottom -2
+# gaps left 2
 smart_borders on
 
 exec --no-startup-id xdg-user-dirs-update
