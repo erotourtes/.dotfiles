@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 
-if test (pgrep -c wallpaper.sh) -gt 1
+if test (pgrep -c wallpaper.fish) -gt 1
   echo it\'s running
   return 1 
 end
