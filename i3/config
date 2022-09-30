@@ -269,3 +269,4 @@ exec_always --no-startup-id setxkbmap -layout us,ua -option 'grp:alt_caps_toggle
 exec_always --no-startup-id feh --bg-fill --randomize /home/sirmax/Fedora_HDD/Pictures/wallpapers/* 
 exec --no-startup-id ~/.config/i3/scripts/wallpaper.fish
 
+exec --no-startup-id fish ~/.config/i3/scripts/micro.fish
