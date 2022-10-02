@@ -27,12 +27,15 @@ function fdf
   if set -q _flag_path; set path $_flag_path; end
   if test -e $argv[1]; set path $argv[1]; end
 
-  if set -q _flag_open_dir
-    echo "TODO"
-    return 0
-  end
 
   set file (find $path -not -path '*/.*'  -type f -iname '*' -not -iname '*.jpg' -not -iname '*.png' | fzf)
+
+  if set -q _flag_open_dir;
+    cd (string replace -r '(\/.[^\/]+)$' "\/" $file);
+    return 0;
+  end
+
+
   if test -e "$file"; vim $file; end
 end
 
