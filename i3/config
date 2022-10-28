@@ -45,7 +45,7 @@ font pango:monospace 0
 
 exec --no-startup-id dex-autostart --autostart --environment i3
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color "$bg-color" --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color "$bg-color" --nofork
 
 exec --no-startup-id nm-applet
 
@@ -276,7 +276,7 @@ exec --no-startup-id fish ~/.config/i3/scripts/micro.fish
 exec --no-startup-id fusuma -d
 
 # turn on computer after suspend only by pressing laptop keys
-exec --no-startup-id sudo sh -c "echo XHC > /proc/acpi/wakeup"
+# exec --no-startup-id sudo sh -c "echo XHC > /proc/acpi/wakeup"
 
 # suspend time is 2 hours
-exec --no-startup-id xset dpms 0 0 7200 &
+# exec --no-startup-id xset dpms 0 0 7200 &
