@@ -10,7 +10,9 @@ function blurI3
   # convert $picture_path -virtual-pixel Black -scale 10% -resize 1000% -blur 0x5  $tempPicture
 
 # ~~ 600ms
-  convert $picture_path -scale 10% -blur 0x2.5 -resize 1000% $tempPicture
+  # convert $picture_path -scale 10% -blur 0x2.5 -resize 1000% $tempPicture
+
+  convert $picture_path -scale 10% -blur 0x1.5 -resize 1000% $tempPicture
 
 # ~~ 522ms
   # convert $picture_path -scale 2.5% -gaussian-blur 0x2.5 -resize 4000% $tempPicture

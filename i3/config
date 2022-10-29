@@ -221,7 +221,7 @@ bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of
 bindsym $mod+Control+n exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
 
 # suspend system
-bindsym $mod+shift+s exec --no-startup-id systemctl suspend
+bindsym $mod+shift+s exec --no-startup-id i3lock --color "$bg-color" && systemctl suspend
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
