@@ -8,8 +8,8 @@ end
 
 echo running
 
-set picture_path ~/Fedora_HDD/Pictures/wallpapers/Favourites
-if not test -e picture_path 
+set picture_path ~/Fedora_HDD/Pictures/wallpapers/Favourites/
+if not test -e ~/Fedora_HDD/Pictures/wallpapers/Favourites/ 
   set picture_path (find ~/ -type d -name Pictures -not -path "*/.*" | xargs -I {} find "{}" -type d -iname wallpapers)
 end
 
