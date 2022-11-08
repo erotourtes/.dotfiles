@@ -214,14 +214,14 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
 
 #lock system
-bindsym $mod+shift+x exec --no-startup-id i3lock --color "$bg-color"
+bindsym $mod+shift+x exec --no-startup-id i3lock -i ~/.config/i3/wallpapers/lock.png -e
 # bindsym $mod+shift+x exec --no-startup-id fish ~/.config/i3/scripts/i3lock-blur.fish
 bindsym $mod+n exec --no-startup-id xrandr --auto
 bindsym $mod+shift+n exec --no-startup-id xrandr --output eDP1 --auto --right-of HDMI2
 bindsym $mod+Control+n exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
 
 # suspend system
-bindsym $mod+shift+s exec --no-startup-id i3lock --color "$bg-color" && systemctl suspend
+bindsym $mod+shift+s exec --no-startup-id i3lock -i ~/.config/i3/wallpapers/lock.png  && systemctl suspend
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
