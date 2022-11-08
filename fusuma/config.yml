@@ -1,9 +1,9 @@
 swipe:
   3:
     left:
-      command: "xdotool key alt+Right" # History forward
+      command: "xdotool key ctrl+w" # close tab
     right:
-      command: "xdotool key alt+Left" # History back
+      command: "xdotool key shift+ctrl+t" # undo a closed tab
     up:
       command: "xdotool key ctrl+shift+Tab"
     down:
@@ -20,14 +20,14 @@ swipe:
 pinch:
   2:
     in:
-      command: 'xdotool key ctrl+0'
-    out:
-      command: 'xdotool key ctrl+0'
-  3:
-    in:
       command: 'xdotool key ctrl+plus'
     out:
       command: 'xdotool key ctrl+minus'
+  3:
+    in:
+      command: 'xdotool key ctrl+0'
+    out:
+      command: 'xdotool key ctrl+0'
 
 threshold:
   swipe: 0.4
