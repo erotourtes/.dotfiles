@@ -1,3 +1,7 @@
+# dnf speedup
+# max_parallel_downloads=5
+# fastestmirror=True
+
 #needed programs
 # neovim ripgrep bat git-delta exa btop fzf fish alacritty
 # xset xinput
