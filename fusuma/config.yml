@@ -10,9 +10,9 @@ swipe:
       command: "xdotool key ctrl+Tab"
   4:
     left:
-     command: exec i3 workspace next
-    right:
       command: exec i3 workspace prev
+    right:
+      command: exec i3 workspace next
     up:
       command: exec i3 fullscreen toggle
     down:
