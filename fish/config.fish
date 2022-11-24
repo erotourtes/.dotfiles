@@ -40,21 +40,25 @@ function fdf
 end
 
 function fd
-  set -l path ~/Fedora_HDD/projects/
+  set -l path ~/Fedora_HDD/Documents/projects/
   set -l options "h/help" 
+  set options $options "a/all" 
   set options $options (fish_opt -s p -l path --required-val)
   argparse $options -- $argv
   if set -q _flag_help; echo "Default path:" $path \n$options; return 0; end
   if set -q _flag_path; set path $_flag_path; end
-  if test -e $argv[1]; set path $argv[1]; end
 
   echo $path
 
-  cd (find $path -not -path '*/.*'  -type d -iname '*' | fzf)
+  if set -q _flag_all
+    cd (find $path -type d -iname '*' | fzf)
+  else
+    cd $path/(find $path -not -path '*/.*'  -type d -iname '*' | string split -n $path | fzf)
+  end
 end
 
 function mkfile; mkdir -p $argv[1] && touch $argv[1]/$argv[2]; end
-function pd; cd ~/Fedora_HDD/projects/; end
+function pd; cd ~/Fedora_HDD/Documents/projects/; end
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
