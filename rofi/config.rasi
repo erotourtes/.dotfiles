@@ -43,6 +43,12 @@ configuration {
     background-color: @transparent;
 }
 
+error-message {
+    background-color: @bg-alt;
+    padding: 15px;
+    border-radius:  7px;
+}
+
 #mainbox {
     children: [ inputbar, listview ];
 }
