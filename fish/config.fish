@@ -20,7 +20,7 @@ function fdf
   # argparse $options -- $argv
   set -l path "./"
   set -l options "h/help" 
-  set options $options "o/open-dir" 
+  set options $options "o/open-file" 
   set options $options (fish_opt -s p -l path --required-val)
   argparse $options -- $argv
   if set -q _flag_help; echo "Default path:" $path \n$options; return 0; end
@@ -30,13 +30,13 @@ function fdf
 
   set file (find $path -not -path '*/.*'  -type f -iname '*' -not -iname '*.jpg' -not -iname '*.png' | fzf)
 
-  if set -q _flag_open_dir;
+  if set -q _flag_open_file;
+    if test -e "$file"; vim $file; end
+  else if test -e "$file" 
     cd (string replace -r '(\/.[^\/]+)$' "\/" $file);
-    return 0;
+  else
+    echo "Canceled"
   end
-
-
-  if test -e "$file"; vim $file; end
 end
 
 function fd
