@@ -41,7 +41,7 @@ function fdf
   end
 end
 
-function fd
+function fdd
   set -l path ~/Fedora_HDD/Documents/projects/
   set -l options "h/help" 
   set options $options "a/all" 

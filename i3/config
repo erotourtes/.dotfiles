@@ -8,7 +8,7 @@
 # fastestmirror=True
 
 #needed programs
-# neovim ripgrep bat git-delta exa btop fzf fish alacritty
+# neovim ripgrep bat git-delta exa btop fzf fish alacritty fd-find
 # xset xinput
 # polybar rofi picom 
 # flameshot sxiv
