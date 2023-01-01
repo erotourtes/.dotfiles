@@ -11,7 +11,9 @@ alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 alias vim="nvim"
 alias l="exa --group-directories-first -1"
+alias ll="ls -l --group-directories-first -h"
 alias gs="git status --short"
+alias clear="clear -x"
 
 bind -M insert \cl "accept-autosuggestion"
 
