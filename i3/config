@@ -248,7 +248,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 hide_edge_borders both
 for_window [class=".*"] border pixel 1
 gaps inner 7
-gaps outer 3
+gaps outer 1
 gaps top -1
 gaps bottom -2
 # gaps left 2
