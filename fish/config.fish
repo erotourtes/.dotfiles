@@ -53,9 +53,9 @@ function fdd
   echo $path
 
   if set -q _flag_all
-    cd (find $path -type d -iname '*' | fzf)
+    cd (fd --base-directory $path -H -I -t d | fzf)
   else
-    cd $path/(find $path -not -path '*/.*'  -type d -iname '*' | string split -n $path | fzf)
+    cd $path/(fd --base-directory  $path -t d | string split -n $path | fzf)
   end
 end
 
