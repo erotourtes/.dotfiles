@@ -30,10 +30,10 @@ function fdf
   if test -n "$argv[1]"; and test -e "$argv[1]"; set path $argv[1]; end
 
   # set file (find $path -not -path '*/.*'  -type f -iname '*' -not -iname '*.jpg' -not -iname '*.png' | fzf)
-  set file (fd --base-directory $path -t f -E "*.png" -E "*.jpg" | fzf)
+  set file $path(fd --base-directory $path -t f -E "*.png" -E "*.jpg" | fzf)
 
   if set -q _flag_open_file;
-    if test -e "$file"; vim $file; end
+    if test -e "$file"; xdg-open $file; end
   else if test -e "$file" 
     cd (string replace -r '(\/.[^\/]+)$' "\/" $file);
   else
