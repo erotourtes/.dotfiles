@@ -42,7 +42,7 @@ function fdf
 end
 
 function fdd
-  set -l path ~/Fedora_HDD/Documents/projects/
+  set -l path ~/Files/Documents/projects/
   set -l options "h/help" 
   set options $options "a/all" 
   set options $options (fish_opt -s p -l path --required-val)
@@ -60,7 +60,7 @@ function fdd
 end
 
 function mkfile; mkdir -p $argv[1] && touch $argv[1]/$argv[2]; end
-function pd; cd ~/Fedora_HDD/Documents/projects/; end
+function pd; cd ~/Files/Documents/projects/; end
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
