@@ -15,52 +15,11 @@ alias ll="ls -l --group-directories-first -h"
 alias gs="git status --short"
 alias clear="clear -x"
 
+alias doc="docker"
+alias doco="docker-compose"
+
 bind -M insert \cl "accept-autosuggestion"
 
-function fdf 
-  # set -l options (fish_opt -s n -l name --required-val)
-  # argparse $options -- $argv
-  set -l path "./"
-  set -l options "h/help" 
-  set options $options "o/open-file" 
-  set options $options (fish_opt -s p -l path --required-val)
-  argparse $options -- $argv
-  if set -q _flag_help; echo "Default path:" $path \n$options; return 0; end
-  if set -q _flag_path; set path $_flag_path; end
-  if test -n "$argv[1]"; and test -e "$argv[1]"; set path $argv[1]; end
-
-  # set file (find $path -not -path '*/.*'  -type f -iname '*' -not -iname '*.jpg' -not -iname '*.png' | fzf)
-  set file $path(fd --base-directory $path -t f -E "*.png" -E "*.jpg" | fzf)
-
-  if set -q _flag_open_file;
-    if test -e "$file"; xdg-open $file; end
-  else if test -e "$file" 
-    cd (string replace -r '(\/.[^\/]+)$' "\/" $file);
-  else
-    echo "Canceled"
-  end
-end
-
-function fdd
-  set -l path ~/Files/Documents/projects/
-  set -l options "h/help" 
-  set options $options "a/all" 
-  set options $options (fish_opt -s p -l path --required-val)
-  argparse $options -- $argv
-  if set -q _flag_help; echo "Default path:" $path \n$options; return 0; end
-  if set -q _flag_path; set path $_flag_path; end
-
-  echo $path
-
-  if set -q _flag_all
-    cd (fd --base-directory $path -H -I -t d | fzf)
-  else
-    cd $path/(fd --base-directory  $path -t d | string split -n $path | fzf)
-  end
-end
-
-function mkfile; mkdir -p $argv[1] && touch $argv[1]/$argv[2]; end
-function pd; cd ~/Files/Documents/projects/; end
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -69,35 +28,224 @@ if status is-interactive
 end
 
 
-
-# Prompt functions
-
-function fish_prompt
-    echo (fish_git_prompt) '~'(pwd)\n '  ' 
-end
-
-function fish_greeting
-  echo (set_color yellow) ""
-end
-
-function fish_mode_prompt --description 'displays the current mode'
-                        # Do nothing if not in vi mode
-                        if test "$fish_key_bindings" = "fish_vi_key_bindings"
-                            switch $fish_bind_mode
-                                case default
-                                    set_color --bold "F55D3E"  
-                                    echo N
-                                case insert
-                                    set_color --bold yellow
-                                    echo I
-                                 case replace
-                                     set_color --bold "04A777"
-                                     echo R
-                                case visual
-                                    set_color --bold "8AFFC1"
-                                    echo V
-                            end
-                            set_color normal
-                            printf " "
-                        end
-                    end
+set -Ux LF_ICONS "\
+*.7z=:\
+*.aac=:\
+*.ace=:\
+*.alz=:\
+*.arc=:\
+*.arj=:\
+*.asf=:\
+*.atom=:\
+*.au=:\
+*.avi=:\
+*.bash=:\
+*.bash_history=:\
+*.bashprofile=:\
+*.bashrc=:\
+*.bmp=:\
+*.bz2=:\
+*.bz=:\
+*.c=:\
+*.cab=:\
+*.cc=:\
+*.cfg=:\
+*.cgm=:\
+*.clang-format=:\
+*.clj=:\
+*.cmd=:\
+*.coffee=:\
+*.cpio=:\
+*.cpp=:\
+*.css=:\
+*.d=:\
+*.dart=:\
+*.deb=:\
+*.dl=:\
+*.DS_Store=:\
+*.dwm=:\
+*.dz=:\
+*.ear=:\
+*.emf=:\
+*.env=:\
+*.erl=:\
+*.esd=:\
+*.exs=:\
+*.fish=:\
+*.flac=:\
+*.flc=:\
+*.fli=:\
+*.flv=:\
+*.fs=:\
+*.gif=:\
+*.git=:\
+*.gitattributes=:\
+*.gitconfig=:\
+*.github=:\
+*.gitignore=:\
+*.gitignore_global=:\
+*.gitkeep=:\
+*.gitmodules=:\
+*.gl=:\
+*.go=:\
+*.gz=:\
+*.h=:\
+*.hh=:\
+*.hidden=:\
+*.hpp=:\
+*.hs=:\
+*.html=:\
+*.hyper.js=:\
+*.jar=:\
+*.java=:\
+*.jl=:\
+*.jpeg=:\
+*.jpg=:\
+*.js=:\
+*.json=:\
+*.jsx=:\
+*.lha=:\
+*.lrz=:\
+*.lua=:\
+*.lz4=:\
+*.lz=:\
+*.lzh=:\
+*.lzma=:\
+*.lzo=:\
+*.m2v=:\
+*.m4a=:\
+*.m4v=:\
+*.map=:\
+*.md=:\
+*.mdx=:\
+*.mid=:\
+*.midi=:\
+*.mjpeg=:\
+*.mjpg=:\
+*.mka=:\
+*.mkv=:\
+*.mng=:\
+*.mov=:\
+*.mp3=:\
+*.mp4=:\
+*.mp4v=:\
+*.mpc=:\
+*.mpeg=:\
+*.mpg=:\
+*.nix=:\
+*.npmignore=:\
+*.npmrc=:\
+*.nuv=:\
+*.nvmrc=:\
+*.oga=:\
+*.ogg=:\
+*.ogm=:\
+*.ogv=:\
+*.ogx=:\
+*.opus=:\
+*.pbm=:\
+*.pcx=:\
+*.pdf=:\
+*.pgm=:\
+*.php=:\
+*.pl=:\
+*.png=:\
+*.ppm=:\
+*.pro=:\
+*.ps1=:\
+*.py=:\
+*.qt=:\
+*.ra=:\
+*.rar=:\
+*.rb=:\
+*.rm=:\
+*.rmvb=:\
+*.rpm=:\
+*.rs=:\
+*.rvm=:\
+*.rz=:\
+*.sar=:\
+*.scala=:\
+*.sh=:\
+*.skhdrc=:\
+*.sol=ﲹ:\
+*.spx=:\
+*.svg=:\
+*.svgz=:\
+*.swm=:\
+*.t7z=:\
+*.tar=:\
+*.taz=:\
+*.tbz2=:\
+*.tbz=:\
+*.tga=:\
+*.tgz=:\
+*.tif=:\
+*.tiff=:\
+*.tlz=:\
+*.tmux.conf=:\
+*.trash=:\
+*.ts=:\
+*.tsx=:\
+*.txz=:\
+*.tz=:\
+*.tzo=:\
+*.tzst=:\
+*.vim=:\
+*.vimrc=:\
+*.vob=:\
+*.vscode=:\
+*.war=:\
+*.wav=:\
+*.webm=:\
+*.wim=:\
+*.xbm=:\
+*.xcf=:\
+*.xpm=:\
+*.xspf=:\
+*.xwd=:\
+*.xz=:\
+*.yabairc=:\
+*.yaml=פּ:\
+*.yarn-integrity=:\
+*.yarnrc=:\
+*.yml=פּ:\
+*.yuv=:\
+*.z=:\
+*.zip=:\
+*.zoo=:\
+*.zprofile=:\
+*.zprofile=:\
+*.zsh=:\
+*.zsh_history=:\
+*.zshrc=:\
+*.zst=:\
+*bin=:\
+*config=:\
+*docker-compose.yml=:\
+*dockerfile=:\
+*gradle=:\
+*gruntfile.coffee=:\
+*gruntfile.js=:\
+*gruntfile.ls=:\
+*gulpfile.coffee=:\
+*gulpfile.js=:\
+*gulpfile.ls=:\
+*include=:\
+*lib=:\
+*localized=:\
+*node_modules=:\
+*package.json=:\
+*rubydoc=:\
+*tsconfig.json=:\
+*yarn.lock=:\
+di=:\
+dt=:\
+ex=:\
+fi=:\
+ln=:\
+or=:\
+ow=:\
+st=:\
+tw=:\
+"
