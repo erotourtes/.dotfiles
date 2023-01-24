@@ -17,6 +17,15 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
 cmd trash ${{
   trash-put "$f"
 }}
@@ -39,10 +48,10 @@ cmd trash ${{
 
 map au unarchive
 
-cmd open-with-cli $$@ $fx ## opens with a cli application inside lf client
-map o push :open-with-cli<space> ## input application
-
 # Basic Functions
+map d
+map m
+
 map p paste
 map x cut
 map y copy
@@ -51,8 +60,9 @@ map R reload
 map mf mkfile
 map md mkdir
 
-map d
-map m
+map r push :rename<space>
+map o open
+
 map dd trash
 
 # Movement
