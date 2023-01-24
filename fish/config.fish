@@ -20,7 +20,6 @@ alias doco="docker-compose"
 
 bind -M insert \cl "accept-autosuggestion"
 
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
@@ -28,6 +27,10 @@ if status is-interactive
 end
 
 
+# lf
+
+bind \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
+alias gd="lfcd"
 set -Ux LF_ICONS "\
 *.7z=:\
 *.aac=:\

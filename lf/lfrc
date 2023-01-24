@@ -1,0 +1,61 @@
+# Default
+
+set hidden true
+set ignorecase true
+set icons true
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd trash ${{
+  trash-put "$f"
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+# Trash bindings
+cmd trash ${{
+    gio trash -- $fx
+}}
+
+map au unarchive
+
+cmd open-with-cli $$@ $fx ## opens with a cli application inside lf client
+map o push :open-with-cli<space> ## input application
+
+# Basic Functions
+map p paste
+map x cut
+map y copy
+map <enter> open
+map R reload
+map mf mkfile
+map md mkdir
+
+map d
+map m
+map dd trash
+
+# Movement
+map gd cd ~/Downloads
+map gc cd ~/.config
+map gt cd ~/.local/share/Trash/files
