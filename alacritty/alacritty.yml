@@ -3,6 +3,10 @@ env:
 
 window:
   opacity: 0.9
+  decorations: 'None'
+  padding:
+    x: 3
+    y: 3
 
 font:
   normal:
