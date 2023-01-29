@@ -26,10 +26,6 @@ cmd open &{{
     esac
 }}
 
-cmd trash ${{
-  trash-put "$f"
-}}
-
 # Archive bindings
 cmd unarchive ${{
   case "$f" in
