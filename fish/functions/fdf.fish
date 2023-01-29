@@ -11,6 +11,8 @@ function fdf
   if set -q _flag_path; set path $_flag_path; end
   if test -n "$argv[1]"; and test -e "$argv[1]"; set path $argv[1]; end
 
+  echo $path
+
   # set file (find $path -not -path '*/.*'  -type f -iname '*' -not -iname '*.jpg' -not -iname '*.png' | fzf)
   if set -q _flag_all
     set file $path(fd --base-directory $path -t f | fzf)
