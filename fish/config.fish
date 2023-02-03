@@ -8,7 +8,9 @@ set -gx MANPAGER "nvim +Man!"
 
 alias t="tmux"
 alias ta="tmux attach -t"
-alias tk="tmux kill-session -t"
+alias tk="tmux-kill-session"
+alias ts="tmux-sessionizer"
+
 alias vim="nvim"
 alias l="exa --group-directories-first -1"
 alias ll="ls -l --group-directories-first -h"
