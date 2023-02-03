@@ -7,7 +7,7 @@ set -gx MANPAGER "nvim +Man!"
 
 
 alias t="tmux"
-alias ta="tmux attach -t"
+alias ta="tmux-attach"
 alias tk="tmux-kill-session"
 alias ts="tmux-sessionizer"
 
