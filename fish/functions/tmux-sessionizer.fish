@@ -1,5 +1,8 @@
 function tmux-sessionizer -d "Switch to tmux session"
-    set -l selected (fd --max-depth=2 --min-depth=1 --type=d . ~/Documents/projects ~/.config | fzf)
+    set -l selected (printf "%s\n" \
+            (fd --max-depth=2 --min-depth=1 --type=d . ~/Documents/projects ~/.config) \
+            (echo "$HOME/.config") \
+            | fzf)
     if test -z $selected; echo Canceled; return 0; end
 
     set -l dir_name (string sub --length 2 (basename (dirname $selected)))
