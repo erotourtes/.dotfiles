@@ -6,7 +6,7 @@ function tmux-kill-session
 
     for arg in $argv
         set -l name (tmux ls | string split --fields 1 ":")
-        set -l selected (printf "%s\n" $name | rg $arg)
+        set -l selected (printf "%s\n" $name | rg -i $arg)
 
         for session in $selected
             echo "Terminating session $session"
