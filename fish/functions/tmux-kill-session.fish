@@ -8,6 +8,16 @@ function tmux-kill-session
         set -l name (tmux ls | string split --fields 1 ":")
         set -l selected (printf "%s\n" $name | rg -i $arg)
 
+        if test (count $selected) -gt 1
+            printf "%s\n" $selected ""
+            echo "Press enter to continue"
+            read -l shouldDelete
+            if test -n "$shouldDelete"
+              echo Canceled
+              return 1
+            end
+        end
+
         for session in $selected
             echo "Terminating session $session"
             tmux kill-session -t $session
