@@ -6,7 +6,7 @@ function tmux-sessionizer -d "Switch to tmux session"
     if test -z $selected; echo Canceled; return 0; end
 
     set -l dir_name (string sub --length 2 (basename (dirname $selected)))
-    set -l base_name (string sub --length 5 (basename $selected))
+    set -l base_name (basename $selected)
 
     set -l selected_name  $dir_name/$base_name
     set -l selected_name (echo $selected_name | tr . _)

@@ -5,7 +5,8 @@ function tmux-attach
     end
 
     set -l name (tmux ls | string split --fields 1 ":")
-    set -l selected (printf "%s\n" $name | rg -i $argv[1])
+    set -l str (echo $argv[1] | sed 's/\(.\{1\}\)/\1.*/g')
+    set -l selected (printf "%s\n" $name | rg -i "$str")
     echo "Attaching to $selected"
     tmux attach -t $selected
 end
