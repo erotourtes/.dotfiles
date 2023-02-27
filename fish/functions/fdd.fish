@@ -11,8 +11,8 @@ function fdd
   echo $path
 
   if set -q _flag_all
-    cd (fd --base-directory $path -H -t d | fzf)
+    cd $path/(fd --base-directory $path -E node_modules -H -t d  | fzf)
   else
-    cd $path/(fd --base-directory  $path -t d | string split -n $path | fzf)
+    cd $path/(fd --base-directory $path -E node_modules -t d | string split -n $path | fzf)
   end
 end
