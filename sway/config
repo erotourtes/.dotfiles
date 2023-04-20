@@ -23,7 +23,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Pictures/Wallpapers/000.jpg fill
 #
 # Example configuration:
 #
@@ -80,6 +80,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    # Focus window by searching it
+    bindsym $mod+Shift+d exec ~/.config/sway/sws.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -92,7 +94,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Log out?' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+s exec systemctl suspend
 #
 # Moving around:
 #
@@ -219,13 +222,17 @@ bar {
 
     colors {
         statusline #ffffff
-        background #323232
+        background #32323280
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
 
 default_border pixel
+
+exec --no-startup-id "export XDG_CURRENT_DESKTOP=sway"
+
 gaps inner 7 
+gaps outer 1
 
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
@@ -233,5 +240,9 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+bindsym Print exec --no-startup-id flameshot screen -c -n 0
+bindsym shift+Print exec --no-startup-id flameshot gui
+bindsym ctrl+Print exec --no-startup-id flameshot screen -c -n 0 -p ~/Fedora_HDD/Pictures/screenshots/
 
 include /etc/sway/config.d/*
