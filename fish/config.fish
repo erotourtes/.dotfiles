@@ -5,6 +5,9 @@ set TERM "alacritty"
 set -gx EDITOR nvim
 set -gx MANPAGER "nvim +Man!"
 
+if test -n "$SWAYSOCK" 
+  set -gx XDG_CURRENT_DESKTOP sway
+end
 
 alias t="tmux"
 alias ta="tmux-attach"

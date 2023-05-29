@@ -64,6 +64,12 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_options "altwin:swap_lalt_lwin,grp:caps_toggle"
 }
 
+### Monitor configuration
+output HDMI-A-2 resolution 1920x1080 position 0,0
+output eDP-1 pos 0 1080 res 1920x1080
+
+exec_always ~/.config/sway/monitor.bash
+
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -153,7 +159,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    bindsym $mod+g splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
@@ -179,11 +185,11 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+Shift+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -229,8 +235,6 @@ bar {
 
 default_border pixel
 
-exec --no-startup-id "export XDG_CURRENT_DESKTOP=sway"
-
 gaps inner 7 
 gaps outer 1
 
@@ -241,8 +245,8 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
-bindsym Print exec --no-startup-id flameshot screen -c -n 0
-bindsym shift+Print exec --no-startup-id flameshot gui
-bindsym ctrl+Print exec --no-startup-id flameshot screen -c -n 0 -p ~/Fedora_HDD/Pictures/screenshots/
+bindsym Print exec --no-startup-id fish -c "flameshot screen -c -n 0"
+bindsym shift+Print exec --no-startup-id fish -c "flameshot gui"
+bindsym ctrl+Print exec --no-startup-id fish -c "flameshot screen -c -n 0 -p ~/Pictures/Screenshots/"
 
 include /etc/sway/config.d/*
