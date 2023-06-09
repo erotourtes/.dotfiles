@@ -23,6 +23,8 @@ alias clear="clear -x"
 alias doc="docker"
 alias doco="docker-compose"
 
+alias ch="~/.config/fish/cht.sh"
+
 bind -M insert \cl "accept-autosuggestion"
 
 if status is-interactive
@@ -31,6 +33,7 @@ if status is-interactive
     # fish_hybrid_key_bindings 
 end
 
+zoxide init fish | source
 
 # lf
 
