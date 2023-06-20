@@ -2,7 +2,6 @@
 
 !.gitignore
 !.gitmodules
-!git-delta.ini
 !alacritty/
 !fish/
 !i3/
@@ -13,7 +12,6 @@
 !tmux/
 !fusuma/
 !lf/
-!dconf/
 !gitconfig
 !sway/
 !git/
