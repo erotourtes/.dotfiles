@@ -18,10 +18,40 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu rofi
+
+set $color_bg #AE2DE6
+set $color_bg_dark #141414
+set $color_yellow #E3AE2D
+set $color_yellow_dark #a88120
+set $color_fg_dark #4B4C4D
+set $color_fg #ECF0F1
 
 ### Output configuration
-#
+set $display_primary HDMI-A-2
+set $display_secondary eDP-1
+
+output $display_primary resolution 1920x1080 position 0,0
+output $display_secondary pos 0 1080 res 1920x1080
+
+bindsym $mod+m+k output $display_secondary disable
+bindsym $mod+Shift+m+k output $display_secondary enable
+
+# workspace to displays
+workspace 1 output  $display_primary
+workspace 2 output  $display_primary
+workspace 3 output  $display_primary
+workspace 4 output  $display_primary
+workspace 5 output  $display_primary
+workspace 6 output  $display_primary
+
+workspace 7 output  $display_secondary
+workspace 8 output  $display_secondary
+workspace 9 output  $display_secondary
+workspace 10 output $display_secondary
+
+exec_always ~/.config/sway/monitor.bash
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/Wallpapers/000.jpg fill
 #
@@ -44,11 +74,11 @@ output * bg ~/Pictures/Wallpapers/000.jpg fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+
 ### Input configuration
-#
-# Example configuration:
-#
-input "2821:257:Asus_TouchPad" {
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input type:touchpad {
     dwt disabled
     tap enabled
     natural_scroll enabled
@@ -57,22 +87,13 @@ input "2821:257:Asus_TouchPad" {
     pointer_accel 0.35 
 }
 
-input "1:1:AT_Translated_Set_2_keyboard" {
+input type:keyboard {
     repeat_delay 220
     repeat_rate 20
     xkb_layout us,ua
-    xkb_options "altwin:swap_lalt_lwin,grp:caps_toggle"
+    xkb_options "altwin:swap_lalt_lwin,caps:escape,grp:win_space_toggle"
 }
 
-### Monitor configuration
-output HDMI-A-2 resolution 1920x1080 position 0,0
-output eDP-1 pos 0 1080 res 1920x1080
-
-exec_always ~/.config/sway/monitor.bash
-
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
@@ -85,7 +106,7 @@ exec_always ~/.config/sway/monitor.bash
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu -show drun
     # Focus window by searching it
     bindsym $mod+Shift+d exec ~/.config/sway/sws.sh
 
@@ -102,6 +123,7 @@ exec_always ~/.config/sway/monitor.bash
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Log out?' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+Shift+s exec systemctl suspend
+
 #
 # Moving around:
 #
@@ -227,16 +249,23 @@ bar {
     status_command while ~/.config/sway/status.sh; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #32323280
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $color_fg
+        background $color_bg_dark
+        inactive_workspace $color_bg_dark $color_bg_dark $color_fg_dark 
+        active_workspace $color_yellow_dark $color_bg_dark $color_fg_dark 
+        focused_workspace $color_yellow $color_yellow $color_fg_dark
     }
 }
 
-default_border pixel
+#                       color of bar in tabbed mode
+#client.<class>         <border>        <background>          <text>             <indicator>          <child_border> 
+client.focused          "$color_yellow" "$color_yellow_dark"  "$color_fg"   "$color_yellow_dark" "$color_yellow"
 
-gaps inner 7 
-gaps outer 1
+default_border pixel
+smart_borders on
+
+# gaps inner 7 
+# gaps outer 1
 
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
