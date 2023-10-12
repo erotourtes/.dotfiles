@@ -27,6 +27,7 @@ battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "
 # "tr -d []" removes brackets around the volume.
 # Adapted from https://bbs.archlinux.org/viewtopic.php?id=89648
 audio_volume=$(amixer -M get Master | grep -oE "[0-9]+%" | head -n 1)
+audio_volume_icon=$(amixer -M get Master |  awk 'NR==6 && /\[.*\]/ {print $6}')
 
 brightness=$(brightnessctl | grep -oE "[0-9]+%")
 
@@ -55,4 +56,20 @@ else
     battery_pluggedin=''
 fi
 
-echo "$time | 󰕾 $audio_volume | 󰃚 $brightness | $battery_pluggedin  $battery_charge |  $date_formatted | $network_active ($ping)ms $interface_easyname"
+if [ $audio_volume_icon = "[off]" ];
+then
+    audio_volume_icon=''
+    audio_volume='off'
+elif [ $audio_volume -lt 33 ];
+then
+    audio_volume_icon=''
+elif [ $audio_volume -lt 66 ];
+then
+    audio_volume_icon=''
+else
+    audio_volume_icon=''
+fi
+
+media_title=$(playerctl metadata title)
+
+echo "$media_title    $time | $audio_volume_icon $audio_volume | 󰃚 $brightness | $battery_pluggedin  $battery_charge |  $date_formatted | $network_active ($ping)ms $interface_easyname"

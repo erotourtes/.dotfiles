@@ -1,6 +1,6 @@
 #!/bin/fish
 
-set picture ~/Fedora_HDD/Pictures/screenshots/
+set picture ~/Pictures/
 set lastScreen (l $picture | rg clipboard |rg -o "\d")[-1]
 set newScreen (math $lastScreen + 1)
 if not test -n "$newScreen"
@@ -10,6 +10,6 @@ end
 
 set picture $picture'clipboard'$newScreen'.png'
 
-xclip -selection clipboard -target image/png -out > $picture && sxiv $picture 
+xclip -selection clipboard -target image/png -out > $picture && open $picture 
 
 rm $picture

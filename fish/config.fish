@@ -5,8 +5,15 @@ set TERM "alacritty"
 set -gx EDITOR nvim
 set -gx MANPAGER "nvim +Man!"
 
+fish_add_path ~/.local/share/JetBrains/Toolbox/scripts/
+# /home/sirmax/.local/share/JetBrains/Toolbox/scripts /home/linuxbrew/.linuxbrew/bin/ /home/linuxbrew/.linuxbrew/bin/brew /home/sirmax/.cargo/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin
+
 if test -n "$SWAYSOCK" 
-  set -gx XDG_CURRENT_DESKTOP sway
+  set -gx SDL_VIDEODRIVER             wayland
+  set -gx _JAVA_AWT_WM_NONREPARENTING 1
+  set -gx QT_QPA_PLATFORM             wayland
+  set -gx XDG_CURRENT_DESKTOP         sway
+  set -gx XDG_SESSION_DESKTOP         sway
 end
 
 alias t="tmux"
@@ -25,7 +32,10 @@ alias doco="docker-compose"
 
 alias ch="~/.config/fish/cht.sh"
 
-bind -M insert \cl "accept-autosuggestion"
+function fish_user_key_bindings
+  bind -M insert \cl "accept-autosuggestion"
+  bind -M insert \cp "clear && commandline -f repaint"
+end
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
