@@ -72,4 +72,4 @@ fi
 
 media_title=$(playerctl metadata title)
 
-echo "$media_title    $time | $audio_volume_icon $audio_volume | 󰃚 $brightness | $battery_pluggedin  $battery_charge |  $date_formatted | $network_active ($ping)ms $interface_easyname"
+echo "$time | $audio_volume_icon $audio_volume | 󰃚 $brightness | $battery_pluggedin  $battery_charge |  $date_formatted | $network_active ($ping)ms $interface_easyname"
