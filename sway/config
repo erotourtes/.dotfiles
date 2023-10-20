@@ -289,9 +289,10 @@ bindsym $mod+Ctrl+a exec playerctl play-pause
 bindsym $mod+Ctrl+n exec playerctl next
 bindsym $mod+Ctrl+p exec playerctl previous
 
-bindsym Print exec --no-startup-id fish -c "flameshot screen -c -n 0"
-bindsym shift+Print exec --no-startup-id fish -c "flameshot gui"
-bindsym ctrl+Print exec --no-startup-id fish -c "flameshot screen -c -n 0 -p ~/Pictures/Screenshots/"
+bindsym Print exec --no-startup-id fish -c "flameshot gui"
+bindsym shift+Print exec --no-startup-id fish -c "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy -t image/png"
+bindsym shift+ctrl+Print exec --no-startup-id fish -c 'set -l path "$(xdg-user-dir PICTURES)/Screenshots/$(date +"screen_screenshot_%Y-%m-%d-%H%M%S.png")"; grim -o $(swaymsg -t get_outputs | jq -r ".[] | select(.focused) | .name") - | wl-copy -t image/png; wl-paste > "$path"; set -l res $(notify-send "Screenshot copied to clipboard" --action="Open"); if test "$res" -eq 0; open "$path"; end'
+bindsym ctrl+Print exec --no-startup-id fish ~/.config/sway/capture-active.fish
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 bindsym $mod+o exec ~/.config/sway/open-clipboard-image.bash
