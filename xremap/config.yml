@@ -1,0 +1,91 @@
+# sudo gpasswd -a YOUR_USER input
+# echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
+
+modmap:
+  - name: Global
+    remap:
+      CapsLock: 
+        held: CapsLock
+        alone: Esc
+        alone_timeout_millis: 150
+default_mode: Insert
+
+virtual_modifiers:
+  - CapsLock
+
+
+keymap:
+  - name: CapsLock
+    remap:
+      CapsLock-u: [launch: ["playerctl", "play-pause"]]
+      CapsLock-n: [launch: ["playerctl", "next"]]
+      CapsLock-p: [launch: ["playerctl", "previous"]]
+      CapsLock-j: [Esc, {set_mark: false}, {set_mode: Normal}]
+      Alt-v: [{ set_mode: Normal }]
+      Alt-Shift-v: [{ set_mode: None }]
+
+
+  - mode: Insert
+    remap:
+      c-leftbrace: [{ set_mode: Normal }, { set_mark: false }]
+      CapsLock-v: [{ set_mode: Normal }]
+
+
+  - mode: Normal
+    application:
+      only: [firefox, org.gnome.TextEditor, libreoffice-writer]
+    remap:
+      # Navigation
+      h: { with_mark: left }
+      j: { with_mark: down }
+      k: { with_mark: up }
+      l: { with_mark: right }
+
+      alt-h: alt-h
+      alt-j: alt-j
+      alt-k: alt-k
+      alt-l: alt-l
+
+      # Word navigation
+      w: {with_mark: C-right }
+      b: {with_mark: C-left }
+      e: {with_mark: C-right }
+
+      # Line navigation
+      0: {with_mark: home }
+      Shift-4: end
+
+      # Page navigation
+      Ctrl-u: pageup
+      Ctrl-d: pagedown
+
+      # Selecting/Deleting text
+      v: { set_mark: true }
+      Shift-v: [end, Shift-home, { set_mark: true }]
+      y: [C-c, { set_mark: false }]
+      x: [delete, { set_mark: false }]
+      p: [C-v, { set_mark: false }]
+      d: [C-x, { set_mark: false }]
+      Shift-d: [Shift-End, C-x, { set_mark: false }]
+      C-Shift-d: [home, Shift-End, C-x, { set_mark: false }]
+
+      # Undo and redo
+      u: [C-z, { set_mark: false }]
+      Ctrl-r: C-Shift-z
+
+      # Insert mode
+      i: { set_mode: Insert }
+      Shift-i: [home, { set_mode: Insert}]
+      a: [{set_mode: Insert}, right]
+      Shift-a: [end, { set_mode: Insert}]
+      o: [end, enter, { set_mode: Insert}]
+      Shift-o: [home, enter, up, { set_mode: Insert}]
+
+      # Tab changes + Alt-Enter simulation
+      C-h: C-Shift-tab
+      C-l: C-tab
+      C-j: C-Shift-tab
+      C-k: C-tab
+
+      # Cancel
+      c-leftbrace: [{ set_mark: false }]
