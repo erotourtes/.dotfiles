@@ -21,8 +21,15 @@ keymap:
       CapsLock-n: [launch: ["playerctl", "next"]]
       CapsLock-p: [launch: ["playerctl", "previous"]]
       CapsLock-j: [Esc, {set_mark: false}, {set_mode: Normal}]
-      Alt-v: [{ set_mode: Normal }]
-      Alt-Shift-v: [{ set_mode: None }]
+      Alt-leftbrace: [{ set_mode: Normal }]
+      Alt-Shift-leftbrace: [{ set_mode: None }]
+
+
+  - name: Don't go to normal mode
+    application:
+      not: [firefox, org.gnome.TextEditor, libreoffice-writer]
+    remap:
+      c-leftbrace: c-leftbrace
 
 
   - mode: Insert
