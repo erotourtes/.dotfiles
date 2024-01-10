@@ -1,6 +1,19 @@
 # sudo gpasswd -a YOUR_USER input
 # echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
 
+# echo '
+# [Desktop Entry]
+# Exec=/home/{user}/Documents/Apps/xremap/xremap-gnome /home/{user}/.config/xremap/config.yml %u
+# Version=1.0
+# Type=Application
+# Categories=Development
+# Name=Xremap
+# StartupWMClass=xremap
+# Terminal=false
+# X-GNOME-Autostart-enabled=true
+# StartupNotify=true
+# ' >> ~/.config/autostart/xremap.desktop
+
 modmap:
   - name: Global
     remap:
@@ -14,20 +27,29 @@ virtual_modifiers:
   - CapsLock
 
 
+shared:
+  apps: &apps
+    - firefox
+    - org.gnome.TextEditor
+    - libreoffice-writer
+
+
 keymap:
   - name: CapsLock
     remap:
-      CapsLock-u: [launch: ["playerctl", "play-pause"]]
+      CapsLock-m: [launch: ["playerctl", "play-pause"]]
       CapsLock-n: [launch: ["playerctl", "next"]]
       CapsLock-p: [launch: ["playerctl", "previous"]]
-      CapsLock-j: [Esc, {set_mark: false}, {set_mode: Normal}]
-      Alt-leftbrace: [{ set_mode: Normal }]
-      Alt-Shift-leftbrace: [{ set_mode: None }]
+
+      CapsLock-h: [left]
+      CapsLock-j: [down]
+      CapsLock-k: [up]
+      CapsLock-l: [right]
 
 
-  - name: Don't go to normal mode
+  - name: Don't go to virtual normal mode in apps with build-in vim motions
     application:
-      not: [firefox, org.gnome.TextEditor, libreoffice-writer]
+      not: *apps
     remap:
       c-leftbrace: c-leftbrace
 
@@ -40,7 +62,7 @@ keymap:
 
   - mode: Normal
     application:
-      only: [firefox, org.gnome.TextEditor, libreoffice-writer]
+      only: *apps
     remap:
       # Navigation
       h: { with_mark: left }
@@ -48,10 +70,10 @@ keymap:
       k: { with_mark: up }
       l: { with_mark: right }
 
-      alt-h: alt-h
-      alt-j: alt-j
-      alt-k: alt-k
-      alt-l: alt-l
+      alt-h: [alt-h, { set_mark: false }, { set_mode: Insert }]
+      alt-j: [alt-j, { set_mark: false }, { set_mode: Insert }]
+      alt-k: [alt-k, { set_mark: false }, { set_mode: Insert }]
+      alt-l: [alt-l, { set_mark: false }, { set_mode: Insert }]
 
       # Word navigation
       w: {with_mark: C-right }
