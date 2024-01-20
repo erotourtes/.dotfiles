@@ -22,7 +22,7 @@ alias tk="tmux-kill-session"
 alias ts="tmux-sessionizer"
 
 alias vim="nvim"
-alias l="exa --group-directories-first -1"
+alias l="ls -1 --group-directories-first -h"
 alias ll="ls -l --group-directories-first -h"
 alias gs="git status --short"
 alias clear="clear -x"

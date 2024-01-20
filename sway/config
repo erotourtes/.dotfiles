@@ -93,7 +93,7 @@ input type:touchpad {
 
 input type:keyboard {
     repeat_delay 220
-    repeat_rate 20
+    repeat_rate 30 
     xkb_layout us,ua
     # xkb_options "altwin:swap_lalt_lwin,caps:escape,grp:win_space_toggle"
     # xkb_options "altwin:swap_lalt_lwin,caps:escape,grp:ctrl_space_toggle"
@@ -306,5 +306,7 @@ exec swaync
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 bindsym $mod+Shift+u exec ~/.config/sway/spanish.bash
+
+exec ~/Documents/Apps/xremap/xremap ~/.config/xremap/config.yml
 
 include /etc/sway/config.d/*
