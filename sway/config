@@ -304,8 +304,6 @@ bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
 bindsym --to-code $mod+Shift+u exec ~/.config/sway/spanish.bash
 
-exec ~/Downloads/xremap-linux-x86_64-sway/xremap ~/.dotfiles/xremap/config.yml
-
-exec ~/Documents/Apps/xremap/xremap ~/.config/xremap/config.yml
+exec_always ~/Documents/Apps/xremap/xremap ~/.config/xremap/config.yml
 
 include /etc/sway/config.d/*
