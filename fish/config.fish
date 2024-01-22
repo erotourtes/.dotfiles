@@ -14,6 +14,14 @@ if test -n "$SWAYSOCK"
   set -gx QT_QPA_PLATFORM             wayland
   set -gx XDG_CURRENT_DESKTOP         sway
   set -gx XDG_SESSION_DESKTOP         sway
+
+  # QT_WAYLAND_FORCE_DPI=physical
+
+  set -gx QT_WAYLAND_DISABLE_WINDOWDECORATION 1
+  set -gx SDL_VIDEODRIVER wayland
+
+  set -gx MOZ_ENABLE_WAYLAND 1
+  set -gx MOZ_WEBRENDER 1
 end
 
 alias t="tmux"
