@@ -306,4 +306,7 @@ bindsym --to-code $mod+Shift+u exec ~/.config/sway/spanish.bash
 
 exec_always ~/Documents/Apps/xremap/xremap ~/.config/xremap/config.yml
 
+# enable gnome-keyring daemon
+exec systemctl --user import-environment && gnome-keyring-daemon --components=ssh\,secrets\,pkcs11 --start
+
 include /etc/sway/config.d/*
