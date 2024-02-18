@@ -16,8 +16,8 @@ time=$(date "+%I:%M:%S %p")
 # identifiers. i3 and sway convert the newline between battery state and
 # the charge percentage automatically to a space, producing a result like
 # "charging 59%" or "fully-charged 100%".
-battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
-battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
+battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | grep -E "percentage" | awk '{print $2}')
+battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | grep -E "state" | awk '{print $2}')
 
 # "amixer -M" gets the mapped volume for evaluating the percentage which
 # is more natural to the human ear according to "man amixer".
@@ -39,7 +39,7 @@ brightness=$(brightnessctl | grep -oE "[0-9]+%")
 
 network=$(ip route get 1.1.1.1 | grep -Po '(?<=dev\s)\w+' | cut -f1 -d ' ')
 # interface_easyname grabs the "old" interface name before systemd renamed it
-interface_easyname=$(dmesg | grep $network | grep renamed | awk 'NF>1{print $NF}')
+interface_easyname=$(dmesg | grep $network | grep renamed | awk 'NF>1{print $NF}' | sort | uniq)
 
 if ! [ $network ]
 then
@@ -58,7 +58,7 @@ fi
 if [ $audio_volume_icon = "[off]" ];
 then
     audio_volume_icon=''
-    audio_volume='off'
+    audio_volume=0
 elif [ $audio_volume -lt 33 ];
 then
     audio_volume_icon=''
