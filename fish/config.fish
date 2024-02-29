@@ -43,6 +43,8 @@ alias ch="~/.config/fish/cht.sh"
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
   bind -M insert \cp "clear && commandline -f repaint"
+  bind -M insert \cr "_fzf_search_history"
+  bind -M insert \e\cl "_fzf_search_git_log"
 end
 
 if status is-interactive
