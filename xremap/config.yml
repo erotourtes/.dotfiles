@@ -49,6 +49,9 @@ keymap:
       CapsLock-k: [up]
       CapsLock-l: [right]
 
+      CapsLock-alt-l: [c-right]
+      CapsLock-alt-h: [c-left]
+
 
   - name: Don't go to virtual normal mode in apps with build-in vim motions
     application:
