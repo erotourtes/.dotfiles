@@ -21,9 +21,8 @@ modmap:
         held: CapsLock
         alone: Esc
         alone_timeout_millis: 150
-      # PageUp: LeftCtrl
-      # Left: LeftCtrl
-      # RightCtrl: Left
+      M_R: CapsLock
+
 default_mode: Insert
 
 virtual_modifiers:
@@ -40,18 +39,41 @@ shared:
 keymap:
   - name: CapsLock
     remap:
-      CapsLock-m: [launch: ["playerctl", "play-pause"]]
-      CapsLock-n: [launch: ["playerctl", "next"]]
-      CapsLock-p: [launch: ["playerctl", "previous"]]
-
       CapsLock-h: [left]
       CapsLock-j: [down]
       CapsLock-k: [up]
       CapsLock-l: [right]
 
-      CapsLock-alt-l: [c-right]
-      CapsLock-alt-h: [c-left]
+      CapsLock-alt_l-h: [c-left]
+      CapsLock-alt_l-j: [down]
+      CapsLock-alt_l-k: [up]
+      CapsLock-alt_l-l: [c-right]
 
+      CapsLock-0: home
+      CapsLock-4: end
+      CapsLock-d: [Shift-End, C-x]
+      CapsLock-alt-d: [Shift-End, C-x]
+      CapsLock-g: [c-backspace]
+      CapsLock-alt-g: [c-backspace]
+      CapsLock-f: [backspace]
+      CapsLock-alt-f: [backspace]
+
+      CapsLock-p: [shift-KEY_0]
+      CapsLock-o: [shift-KEY_9]
+      CapsLock-i: [shift-KEY_8]
+      CapsLock-u: [shift-KEY_7]
+      CapsLock-y: [shift-KEY_6]
+      CapsLock-t: [shift-KEY_5]
+      CapsLock-r: [shift-KEY_4]
+      CapsLock-e: [shift-KEY_3]
+      CapsLock-w: [shift-KEY_2]
+      CapsLock-q: [shift-KEY_1]
+
+      CapsLock-KEY_SEMICOLON: [KEY_KPPLUS]
+      CapsLock-alt_l-KEY_SEMICOLON: [KEY_MINUS]
+
+      CapsLock-KEY_APOSTROPHE: [KEY_EQUAL]
+      CapsLock-alt_l-KEY_APOSTROPHE: [KEY_EQUAL]
 
   - name: Don't go to virtual normal mode in apps with build-in vim motions
     application:

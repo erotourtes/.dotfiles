@@ -3,12 +3,6 @@ import = ["/home/sirmax/.config/alacritty/riot.toml"]
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[cursor.style]
-shape = "Beam"
-
-[cursor.vi_mode_style]
-shape = "Block"
-
 [env]
 TERM = "xterm-256color"
 

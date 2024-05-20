@@ -16,7 +16,7 @@ set $term alacritty --working-directory ~/
 # on the original workspace that the command was run on.
 set $menu rofi
 
-set $display_primary HDMI-A-2
+set $display_primary HDMI-A-1
 set $display_secondary eDP-1
 
 set $color_bg #2D2D2D
@@ -38,8 +38,10 @@ output $display_secondary pos 0 1080 res 1920x1080
 
 exec_always ~/.config/sway/monitor.bash
 
-output $display_primary bg `fd -t f . ~/Pictures/Wallpapers/ | shuf -n 1` fill
-output $display_secondary bg ~/Pictures/Wallpapers/028.jpg fill
+# output $display_primary bg `fd -t f . ~/Pictures/Wallpapers/ | shuf -n 1` fill
+# output $display_secondary bg ~/Pictures/Wallpapers/028.jpg fill
+output $display_primary bg ~/Pictures/Wallpapers/029.jpg fill
+output $display_secondary bg ~/Pictures/Wallpapers/006.jpg fill
 
 
 
@@ -109,9 +111,11 @@ input type:keyboard {
 bindsym --to-code $mod+Return exec $term
 bindsym --to-code $mod+Shift+q kill
 bindsym --to-code $mod+d exec $menu -show drun
-bindsym --to-code $mod+Shift+d exec ~/.config/sway/sws.sh
+bindsym --to-code $mod+Shift+d exec sh ~/.config/sway/rofi-window-switcher.sh
+bindsym --to-code $mod+Shift+f exec fish ~/.config/sway/rofi-zoxide-query.fish
 bindsym --to-code $mod+Shift+c reload
 bindsym --to-code $mod+Shift+s exec systemctl suspend
+bindsym --to-code $mod+Shift+w exec swaylock -f -c 000000
 # Exit sway (logs you out of your Wayland session)
 bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'Log out?' -B 'Yes, exit sway' 'swaymsg exit'
     
@@ -282,9 +286,9 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --to-code $mod+m exec amixer set Capture toggle
 
 # Media Playback Controls
-bindsym --to-code $mod+Ctrl+a exec playerctl play-pause
-bindsym --to-code $mod+Ctrl+n exec playerctl next
-bindsym --to-code $mod+Ctrl+p exec playerctl previous
+bindsym --to-code $mod+u exec playerctl play-pause
+bindsym --to-code $mod+n exec playerctl next
+bindsym --to-code $mod+p exec playerctl previous
 
 bindsym Print exec --no-startup-id fish -c "flameshot gui"
 bindsym shift+Print exec --no-startup-id fish -c "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy -t image/png"
@@ -304,6 +308,6 @@ bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
 bindsym --to-code $mod+Shift+u exec ~/.config/sway/spanish.bash
 
-exec ~/Documents/Apps/xremap/xremap ~/.config/xremap/config.yml
+exec fish -c "xremap ~/.config/xremap/config.yml"
 
 include /etc/sway/config.d/*

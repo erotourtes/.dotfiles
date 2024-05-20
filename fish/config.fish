@@ -6,6 +6,7 @@ set -gx EDITOR nvim
 set -gx MANPAGER "nvim +Man!"
 
 fish_add_path ~/.local/share/JetBrains/Toolbox/scripts/
+fish_add_path /usr/local/go/bin
 # /home/sirmax/.local/share/JetBrains/Toolbox/scripts /home/linuxbrew/.linuxbrew/bin/ /home/linuxbrew/.linuxbrew/bin/brew /home/sirmax/.cargo/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin
 
 if test -n "$SWAYSOCK" 
@@ -29,21 +30,21 @@ alias ta="tmux-attach"
 alias tk="tmux-kill-session"
 alias ts="tmux-sessionizer"
 
+alias pn="pnpm"
+
 alias vim="nvim"
 alias l="ls -1 --group-directories-first -h"
 alias ll="ls -l --group-directories-first -h"
 alias gs="git status --short"
-alias clear="clear -x"
-
-alias doc="docker"
-alias doco="docker-compose"
 
 alias ch="~/.config/fish/cht.sh"
+alias gps="gh copilot suggest"
 
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
-  bind -M insert \cp "clear && commandline -f repaint"
+  bind -M insert \cp "clear -x && commandline -f repaint"
   bind -M insert \cr "_fzf_search_history"
+  bind -M insert \cf "_fzf_search_directory"
   bind -M insert \e\cl "_fzf_search_git_log"
 end
 
@@ -51,6 +52,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
     # fish_hybrid_key_bindings 
+
+    set fish_cursor_default     block      
+    set fish_cursor_insert      line       
+    set fish_cursor_replace_one underscore 
+    set fish_cursor_replace     underscore 
+    set fish_cursor_visual      block
 end
 
 zoxide init fish | source
