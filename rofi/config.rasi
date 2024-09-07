@@ -1,15 +1,21 @@
 /**
  * ROFI Color theme
- * User: sirmax 
- */
+ * User: sirmax
+*/
 
 configuration {
   display-drun: "Applications";
   display-window: "Windows";
   display-run: "Run";
+  display-filebrowser: "Files";
   drun-display-format: "{name}";
   modi: "window,run,drun";
   show-icons: true;
+
+  kb-mode-next: "Tab";
+  kb-mode-prev: "ISO_Left_Tab";
+  kb-element-next: "";
+  kb-element-prev: "";
 }
 
 
@@ -25,7 +31,7 @@ configuration {
   margin: 0;
   padding: 0;
   spacing: 0;
-  
+
   highlight:     underline bold #ffffff;
 
   transparent: rgba(0,0,0,0);
@@ -59,7 +65,7 @@ error-message {
     border-radius:  7px;
     children: [prompt, entry];
 }
-  
+
 prompt {
   font: "Fira Code medium 12.5";
   margin: 0 10;
@@ -73,14 +79,14 @@ entry {
 }
 
 #listview {
-    lines: 10;
+    lines: 8;
     dynamic: true;
     fixed-height: false;
 
     padding: 8px;
     border-radius: 7px;
     /* margin: 5px 0px 0 0px; */
-    margin: 5px;
+    margin: 5px 8px;
     border: 0px;
     background-color: @bg;
 }

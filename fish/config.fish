@@ -7,9 +7,10 @@ set -gx MANPAGER "nvim +Man!"
 
 fish_add_path ~/.local/share/JetBrains/Toolbox/scripts/
 fish_add_path /usr/local/go/bin
+fish_add_path ~/.local/bin
 # /home/sirmax/.local/share/JetBrains/Toolbox/scripts /home/linuxbrew/.linuxbrew/bin/ /home/linuxbrew/.linuxbrew/bin/brew /home/sirmax/.cargo/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin
 
-if test -n "$SWAYSOCK" 
+if test -n "$SWAYSOCK"
   set -gx SDL_VIDEODRIVER             wayland
   set -gx _JAVA_AWT_WM_NONREPARENTING 1
   set -gx QT_QPA_PLATFORM             wayland

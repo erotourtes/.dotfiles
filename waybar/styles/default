@@ -1,0 +1,92 @@
+@define-color foreground #ECF0F1;
+@define-color foreground-dark grey;
+@define-color background rgba(20,20,20,0.7);
+@define-color alt #E3AE2D;
+@define-color urgent #eb4d4b;
+
+* {
+  font-family: "FontAwesome 5 Free", "JetBrainsMono Nerd Font";
+  border:        none;
+  border-radius: 0;
+  font-size:     14px;
+  box-shadow:    none;
+  text-shadow:   none;
+  transition-duration: 0s;
+}
+
+window#waybar {
+	background-color: @background;
+	color: @foreground;
+	border-radius: 8px;
+}
+
+.modules-right:last-child {
+  margin-right: 10px;
+}
+
+tooltip {
+	background: @background;
+	border-radius: 12px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: @foreground-dark;
+}
+
+tooltip label{
+	color: @foreground;
+}
+
+#workspaces button {
+    color: @foreground-dark;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 3px;
+    transition: all 0.1s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.active {
+    background-color: transparent;
+    color: @alt;
+    transition: all 0.2s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.focused,
+#workspaces button:hover {
+    background-color: transparent;
+	  color: @foreground;
+    transition: all 0.1s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button.urgent {
+	background-color: @urgent;
+  color: @foreground;
+}
+
+#window.module {
+  margin-left: 10px;
+  min-width: 50px;
+}
+
+/* #idle_inhibitor.module, */
+/* #custom-swaync.module { */
+#clock.module {
+  margin: 0 8px;
+}
+
+#pulseaudio.module,
+#backlight.module,
+#cpu.module,
+#memory.module,
+#battery.module,
+#mpris.horizontal {
+  margin-left: 8px;
+}
+
+/* #connections.module { */
+#network.module {
+  min-width: 20px;
+}
+#bluetooth.module {
+  min-width: 20px;
+  margin-left: 10px;
+}
