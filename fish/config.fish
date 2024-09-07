@@ -40,6 +40,8 @@ alias gs="git status --short"
 alias ch="~/.config/fish/cht.sh"
 alias gps="gh copilot suggest"
 
+alias ne="~/Documents/Apps/neovide.AppImage"
+
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
   bind -M insert \cp "clear -x && commandline -f repaint"
@@ -51,12 +53,12 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
-    # fish_hybrid_key_bindings 
+    # fish_hybrid_key_bindings
 
-    set fish_cursor_default     block      
-    set fish_cursor_insert      line       
-    set fish_cursor_replace_one underscore 
-    set fish_cursor_replace     underscore 
+    set fish_cursor_default     block
+    set fish_cursor_insert      line
+    set fish_cursor_replace_one underscore
+    set fish_cursor_replace     underscore
     set fish_cursor_visual      block
 end
 
