@@ -2,7 +2,16 @@
 
 set hidden true
 set ignorecase true
+set incsearch true
+set incfilter true
+set number true
+set relativenumber true
+# https://www.nerdfonts.com/cheat-sheet
 set icons true
+set scrolloff 8
+
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/pv'
 
 # Custom Functions
 cmd add ${{
@@ -15,7 +24,8 @@ cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 
 cmd open &{{
     case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        application/pdf) xdg-open "$f" ;;
+        text/*|application/*) lf -remote "send $id \$$EDITOR \$fx";;
         *) xdg-open "$f" ;;
     esac
 }}
@@ -38,6 +48,10 @@ cmd trash ${{
 
 map au unarchive
 
+cmd zoxide_cd ${{
+  zoxide query --interactive | xargs -I{} lf -remote "send $id cd {}"
+}}
+
 # Basic Functions
 map d
 map m
@@ -58,3 +72,4 @@ map dd trash
 map gd cd ~/Downloads
 map gc cd ~/.config
 map gt cd ~/.local/share/Trash/files
+map go zoxide_cd
