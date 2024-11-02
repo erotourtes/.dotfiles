@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "yazi-rs/plugins:max-preview", rev = "ad52adf" }, { use = "yazi-rs/plugins:chmod", rev = "ad52adf" }, { use = "yazi-rs/plugins:smart-filter", rev = "ad52adf" }]
+
+[flavor]
+deps = []

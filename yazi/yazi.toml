@@ -1,0 +1,8 @@
+[preview]
+# Change them to your desired values
+max_width  = 1000
+max_height = 1000
+
+[manager]
+ratio = [1, 2, 3]
+scrolloff = 8

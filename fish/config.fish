@@ -68,7 +68,3 @@ if status is-interactive
 end
 
 zoxide init fish | source
-
-# lf
-bind \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
-alias gd="lfcd"

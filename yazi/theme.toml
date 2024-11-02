@@ -1,0 +1,10 @@
+[manager]
+border_symbol = " "
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "reset", bg = "reset" }
+
+# Permissions
+permissions_s = { fg = "blue" }
