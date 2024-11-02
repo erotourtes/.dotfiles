@@ -108,9 +108,9 @@ bindsym --inhibited --to-code {
 ### Rofi ###
 ### ---- ###
   $mod+d exec ~/.config/sway/rofi.fish
-  $mod+ctrl+d exec ~/.config/hypr/scripts/RofiEmoji.sh
-  $mod+shift+v exec ~/.config/hypr/scripts/ClipManager.sh
-  $mod+Shift+d exec sh ~/.config/sway/rofi-window-switcher.sh
+  $mod+shift+v exec ~/.config/rofi/scripts/ClipManager.sh
+  $mod+Shift+d exec ~/.config/rofi/scripts/RofiEmoji.sh
+  $mod+Ctrl+d exec sh ~/.config/sway/rofi-window-switcher.sh
   $mod+Shift+f exec fish ~/.config/sway/rofi-zoxide-query.fish
 
   $mod+Shift+e exec swaynag -t warning -m 'Log out?' -B 'Yes, exit sway' 'swaymsg exit'
