@@ -1,0 +1,1 @@
+/home/sirmax/.dotfiles/rofi/scripts/RofiEmoji.sh

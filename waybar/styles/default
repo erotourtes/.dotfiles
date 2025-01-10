@@ -1,23 +1,26 @@
 @define-color foreground #ECF0F1;
 @define-color foreground-dark grey;
-@define-color background rgba(20,20,20,0.7);
+@define-color background rgba(20, 20, 20, 0.7);
 @define-color alt #E3AE2D;
 @define-color urgent #eb4d4b;
 
 * {
   font-family: "FontAwesome 5 Free", "JetBrainsMono Nerd Font";
-  border:        none;
+  border: none;
   border-radius: 0;
-  font-size:     14px;
-  box-shadow:    none;
-  text-shadow:   none;
+  font-size: 14px;
+  box-shadow: none;
+  text-shadow: none;
   transition-duration: 0s;
+  min-height: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
 window#waybar {
-	background-color: @background;
-	color: @foreground;
-	border-radius: 8px;
+  background: @background;
+  color: @foreground;
+  border-radius: 10px;
 }
 
 .modules-right:last-child {
@@ -25,40 +28,44 @@ window#waybar {
 }
 
 tooltip {
-	background: @background;
-	border-radius: 12px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: @foreground-dark;
+  background: @background;
+  border-radius: 12px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @foreground-dark;
 }
 
-tooltip label{
-	color: @foreground;
+tooltip label {
+  color: @foreground;
+}
+
+#workspaces {
+  margin-left: 5px;
 }
 
 #workspaces button {
-    color: @foreground-dark;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 3px;
-    transition: all 0.1s cubic-bezier(.55,-0.68,.48,1.682);
+  color: @foreground-dark;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-radius: 3px;
+  transition: all 0.1s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button.active {
-    background-color: transparent;
-    color: @alt;
-    transition: all 0.2s cubic-bezier(.55,-0.68,.48,1.682);
+  background: transparent;
+  color: @alt;
+  transition: all 0.2s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button.focused,
 #workspaces button:hover {
-    background-color: transparent;
-	  color: @foreground;
-    transition: all 0.1s cubic-bezier(.55,-0.68,.48,1.682);
+  background: transparent;
+  color: @foreground;
+  transition: all 0.1s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button.urgent {
-	background-color: @urgent;
+  background: @urgent;
   color: @foreground;
 }
 
@@ -67,7 +74,10 @@ tooltip label{
   min-width: 50px;
 }
 
-/* #idle_inhibitor.module, */
+#idle_inhibitor.module {
+  min-width: 25px;
+}
+
 /* #custom-swaync.module { */
 #clock.module {
   margin: 0 8px;
@@ -75,18 +85,43 @@ tooltip label{
 
 #pulseaudio.module,
 #backlight.module,
-#cpu.module,
 #memory.module,
-#battery.module,
+#power-profiles-daemon.module,
+#mpris.horizontal {
+  margin-left: 8px;
+}
+
+#backlight.module {
+  min-width: 13px;
+}
+
+#cpu.module {
+  margin-left: 3px;
+}
+
+#pulseaudio.module.microphone {
+  min-width: 15px;
+}
+
+#battery.module {
+  margin-left: 12px;
+  min-width: 13px;
+}
+
 #mpris.horizontal {
   margin-left: 8px;
 }
 
 /* #connections.module { */
+#connections.horizontal {
+  margin-right: 3px;
+}
+
 #network.module {
   min-width: 20px;
 }
+
 #bluetooth.module {
-  min-width: 20px;
-  margin-left: 10px;
+  min-width: 15px;
+  margin-left: 5px;
 }

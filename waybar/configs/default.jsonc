@@ -1,0 +1,27 @@
+{
+  "include": "~/.config/waybar/modules",
+  "layer": "bottom",
+  "position": "bottom",
+  "height": 27,
+  "spacing": 5,
+  "margin-left": 30,
+  "margin-right": 30,
+  "margin-bottom": 3,
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window",
+  ],
+  "modules-center": [
+    "clock",
+  ],
+  "modules-right": [
+    "idle_inhibitor",
+    "group/motherboard",
+    "group/audio",
+    "group/laptop",
+    "group/connections",
+    "custom/separator#line",
+    "mpris",
+    "tray",
+  ],
+}

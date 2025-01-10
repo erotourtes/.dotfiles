@@ -110,8 +110,6 @@ bindsym --inhibited --to-code {
   $mod+d exec ~/.config/sway/rofi.fish
   $mod+shift+v exec ~/.config/rofi/scripts/ClipManager.sh
   $mod+Shift+d exec ~/.config/rofi/scripts/RofiEmoji.sh
-  $mod+Ctrl+d exec sh ~/.config/sway/rofi-window-switcher.sh
-  $mod+Shift+f exec fish ~/.config/sway/rofi-zoxide-query.fish
 
   $mod+Shift+e exec swaynag -t warning -m 'Log out?' -B 'Yes, exit sway' 'swaymsg exit'
   $mod+Shift+c reload
@@ -329,8 +327,7 @@ exec firefox
 # Notification Daemon
 exec swaync
 
-exec fish -c "xremap ~/.config/xremap/config.yml"
-
+exec_always fish -c "pkill xremap; xremap ~/.config/xremap/config.yml"
 
 
 include /etc/sway/config.d/*

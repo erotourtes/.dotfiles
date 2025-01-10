@@ -1,0 +1,1 @@
+/home/sirmax/.dotfiles/sway/open-clipboard-image.bash

@@ -20,7 +20,8 @@ configuration {
 
 
 * {
-  bg: #141414E6;
+  /* bg: #141414E6; */
+  bg: #141414D9;
   bg-alt: #E3AE2DE6;
   placeholder: #14141480;
 

@@ -1,0 +1,1 @@
+/home/sirmax/.config/rofi/scripts/ClipManager.sh

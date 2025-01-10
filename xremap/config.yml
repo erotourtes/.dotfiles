@@ -21,7 +21,7 @@ modmap:
         held: CapsLock
         alone: Esc
         alone_timeout_millis: 150
-      M_R: CapsLock
+      # M_R: CapsLock
 
 default_mode: Insert
 
@@ -52,11 +52,11 @@ keymap:
       CapsLock-0: home
       CapsLock-4: end
       CapsLock-d: [shift-end, c-x]
-      CapsLock-alt-d: [shift-end, c-x]
+      CapsLock-alt_l-d: [shift-end, c-x]
       CapsLock-g: [c-backspace]
-      CapsLock-alt-g: [c-backspace]
+      CapsLock-alt_l-g: [c-backspace]
       CapsLock-f: [backspace]
-      CapsLock-alt-f: [backspace]
+      CapsLock-alt_l-f: [backspace]
 
       CapsLock-p: [shift-0]
       CapsLock-o: [shift-9]
@@ -93,10 +93,10 @@ keymap:
       k: { with_mark: up }
       l: { with_mark: right }
 
-      alt-h: [alt-h, { set_mark: false }, { set_mode: Insert }]
-      alt-j: [alt-j, { set_mark: false }, { set_mode: Insert }]
-      alt-k: [alt-k, { set_mark: false }, { set_mode: Insert }]
-      alt-l: [alt-l, { set_mark: false }, { set_mode: Insert }]
+      alt_l-h: [alt-h, { set_mark: false }, { set_mode: Insert }]
+      alt_l-j: [alt-j, { set_mark: false }, { set_mode: Insert }]
+      alt_l-k: [alt-k, { set_mark: false }, { set_mode: Insert }]
+      alt_l-l: [alt-l, { set_mark: false }, { set_mode: Insert }]
 
       # Word navigation
       w: {with_mark: c-right }

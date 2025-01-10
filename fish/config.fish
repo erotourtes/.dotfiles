@@ -47,6 +47,9 @@ alias gps="gh copilot suggest"
 
 alias ne="~/Documents/Apps/neovide.AppImage"
 
+alias doco="docker compose"
+alias y="yt-dlp"
+
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
   bind -M insert \cp "clear -x && commandline -f repaint"
