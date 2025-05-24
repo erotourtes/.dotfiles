@@ -1,1 +1,1 @@
-/home/sirmax/.dotfiles/sway/open-clipboard-image.bash
+../../../.config/sway/open-clipboard-image.bash

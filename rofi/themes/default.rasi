@@ -1,0 +1,133 @@
+@import "~/.config/rofi/colors/color.rasi"
+
+* {
+  // bg: #141414D9;
+  // placeholder: #14141480;
+  // bg-alt: #E3AE2DE6;
+  //
+  // fg: #ECF0F1;
+  // fg-alt: #ECF0F140;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  transparent: rgba(0,0,0,0);
+  font: "Fira Code 11.5";
+}
+
+#window {
+    location: center;
+    anchor:   center;
+
+    border:  0px;
+    border-radius: 7px;
+    padding: 0;
+    background-color: @transparent;
+}
+
+error-message {
+    background-color: @bg-alt;
+    padding: 15px;
+    border-radius:  7px;
+}
+
+#mainbox {
+    children: [ inputbar, listview ];
+}
+
+#inputbar {
+    padding: 15px;
+    background-color: @bg-alt;
+    border-radius:  7px;
+    children: [prompt, entry];
+}
+
+prompt {
+  font: "Fira Code medium 12.5";
+  margin: 0 10;
+  text-color: @bg;
+}
+
+entry {
+  font: "Fira Code 12.5";
+  text-color: @bg;
+  placeholder-color: @placeholder;
+}
+
+#listview {
+    lines: 8;
+    dynamic: true;
+    fixed-height: false;
+
+    padding: 8px;
+    border-radius: 7px;
+    margin: 5px 8px;
+    border: 0px;
+    background-color: @bg;
+}
+
+scrollbar {
+    background-color: @bg;
+    handle-color:  @bg-alt;
+}
+
+#element {
+    padding: 7 5;
+    vertical-align: 0.5;
+    border-radius: 5px;
+}
+
+element-text {
+  text-color: @fg-alt;
+  vertical-align: 0.5;
+}
+
+
+/* Selected element */
+#element selected.normal {
+    background-color: transparent;
+}
+element-text selected{
+  text-color: @fg;
+}
+
+
+/* for active window*/
+element-text active {
+    text-color: @bg-alt;
+}
+element alternate active {
+  background-color: transparent;
+}
+element normal active {
+    background-color: transparent;
+}
+element selected active {
+  background-color: transparent;
+}
+
+
+/* Normal element */
+element normal normal {
+    background-color: transparent;
+}
+element alternate normal {
+  background-color: transparent;
+}
+
+/* Urgent element */
+element urgent {
+    background-color: transparent;
+}
+element alternate urgent {
+    background-color: transparent;
+}
+element selected urgent {
+    background-color: transparent;
+}
+
+element-icon {
+  size: 25;
+}

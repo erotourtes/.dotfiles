@@ -1,0 +1,12 @@
+# wallust v3.3
+# https://codeberg.org/explosion-mental/wallust/src/branch/master/docs/templates/filters.md
+backend = "fastresize"
+color_space = "lch"
+palette = "dark"
+# palette = "light"
+
+[templates]
+rofi = { template = 'rofi.j2', target = '~/.config/rofi/colors/auto.rasi' }
+hypr = { template = 'hypr.j2', target = '~/.config/hypr/configs/colors-auto.conf' }
+waybar = { template = "waybar.j2", target = '~/.config/waybar/colors/auto.css' }
+swaync = { template = "colors.j2", target = '~/.config/swaync/colors/auto.css' }

@@ -1,1 +1,1 @@
-/home/sirmax/.config/rofi/scripts/ClipManager.sh
+../../../.config/rofi/scripts/ClipManager.sh

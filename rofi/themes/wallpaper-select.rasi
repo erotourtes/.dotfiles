@@ -1,0 +1,178 @@
+configuration {
+    modi:                        "drun";
+    show-icons:                  true;
+  	drun-display-format:         "{name}";
+    hover-select:                true;
+    font:                        "JetBrains Mono Nerd Font 10";
+}
+
+@import "~/.config/rofi/colors/color.rasi"
+
+* {
+    background-alt:              @bg-alt;
+    selected:                    @bg-alt;
+
+    foreground:                  @fg;
+    text-selected:               @bg;
+    text:                        @fg;
+
+    shade-shadow:                white / 6%;
+    shade-bg:                    white / 12%;
+    shade-border:                white / 24%;
+}
+
+window {
+    fullscreen:                  true;
+    transparency:                "real";
+    cursor:                      "default";
+    background-color:            black / 12%;
+    border:                      0px;
+    border-color:                @selected;
+}
+
+/* Inputbar */
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0% 25%;
+    padding:                     8px 12px;
+    background-color:            @background-alt;
+    border-radius:               8px;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    background-color:            transparent;
+    width:                       13px;
+    text-color:                  @bg;
+}
+entry {
+    enabled:                     true;
+    expand:                      false;
+    width:                       550px;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           @placeholder;
+    text-color:                  @bg;
+    background-color:            transparent;
+}
+
+/* Elements */
+element normal.normal,
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  @text;
+}
+
+element selected.normal {
+    background-color:            @shade-bg;
+    text-color:                  white;
+    border:                      1px solid;
+    border-color:                @selected;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+
+/* Listview */
+
+listview {
+  border:                        0px;
+}
+
+/* Scrollbar */
+scrollbar {
+    margin:                      0px 4px;
+    handle-width:                8px;
+    handle-color:                white;
+    background-color:            @shade-shadow;
+    border-radius:               4px;
+}
+
+/* Message */
+message {
+    background-color:            @shade-bg;
+    border:                      1px solid;
+    border-color:                transparent;
+    border-radius:               12px;
+    padding:                     24px;
+}
+error-message {
+    padding:                     100px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            black / 10%;
+    text-color:                  @text;
+}
+textbox {
+    background-color:            transparent;
+    text-color:                  @text;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    highlight:                   none;
+}
+
+/* Main Window */
+window {
+    width:                       100%;
+    height:                      100%;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+/* Main Box */
+mainbox {
+    children:                    [ "inputbar", "listview" ];
+    background-color:            transparent;
+
+    spacing:                     24px;
+    margin:                      0px;
+    padding:                     64px;
+}
+
+/* List */
+listview {
+    columns:                     4;
+    lines:                       4;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    background-color:           transparent;
+    text-color:                 @foreground;
+
+    spacing:                     8px;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+/* Elements */
+element {
+    cursor:                      pointer;
+    border-radius:               12px;
+    background-color:            transparent;
+
+    text-color:                  @foreground;
+    orientation:                 vertical;
+
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     10px;
+}
+
+element-icon {
+    background-color:            transparent;
+    size:                        26%;
+}

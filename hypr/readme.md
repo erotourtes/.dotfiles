@@ -15,3 +15,13 @@ Or [Google chrome from settings](https://www.reddit.com/r/Fedora/comments/rkzp78
 
 #### Jetbrains
 [Jetbrains](https://blog.jetbrains.com/platform/2024/07/wayland-support-preview-in-2024-2/)
+
+#### OGT
+```sh
+sudo loginctl enable-linger $USER
+```
+
+#### Mute headphones
+```sh
+wpctl settings --save bluetooth.autoswitch-to-headset-profile false
+```

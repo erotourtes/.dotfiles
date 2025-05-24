@@ -1,1 +1,1 @@
-/home/sirmax/.dotfiles/rofi/scripts/RofiEmoji.sh
+../../../.config/rofi/scripts/RofiEmoji.sh

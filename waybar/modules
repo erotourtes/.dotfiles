@@ -105,7 +105,7 @@
   "tooltip": false,
 },
 "cpu": {
-	"format": "<span color='#E3AE2D'>󰍛</span> {usage}%",
+	"format": "󰍛 {usage}%",
 	"interval": 10,
 	"min-length": 5,
 	"format-alt-click": "click",
@@ -172,6 +172,7 @@
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	],
+	"on-click": "nm-connection-editor",
 },
 "network#speed": {
 	"interval": 1,
@@ -207,7 +208,7 @@
 	"format-icons": {
 		"headphone": "",
 		"hands-free": "",
-		"headset": "",
+		"headset": "",
 		"phone": "",
 		"portable": "",
 		"car": "",

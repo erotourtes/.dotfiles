@@ -21,3 +21,13 @@
 !waybar/
 !yazi/
 !kitty/
+!wallust/
+
+waybar/colors/auto.css
+waybar/colors/color.css
+swaync/colors/auto.css
+swaync/colors/color.css
+rofi/colors/auto.rasi
+rofi/colors/color.rasi
+hypr/configs/colors.conf
+hypr/configs/colors-auto.conf
