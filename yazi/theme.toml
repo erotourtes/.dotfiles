@@ -1,5 +1,5 @@
 # https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml
-[manager]
+[mgr]
 border_symbol = " "
 
 [status]
@@ -9,3 +9,9 @@ sep_right = { open = "", close = "" }
 # Permissions
 perm_type  = { fg = "blue" }
 perm_exec  = { fg = "blue" }
+
+[tabs]
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+active   = { fg = "black", bg = "blue", bold = true }
+inactive = { fg = "blue", bg = "black" }
