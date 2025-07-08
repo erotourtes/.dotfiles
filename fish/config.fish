@@ -39,16 +39,13 @@ alias vim="nvim"
 alias ls="ls --hyperlink=auto --group-directories-first -h --color=auto"
 alias l="ls -1"
 alias ll="ls -l"
-alias gs="git status --short"
 alias rg="rg --hyperlink-format kitty"
+alias doco="docker compose"
 
+alias y="yt-dlp"
 alias ch="~/.config/fish/cht.sh"
-alias gps="gh copilot suggest"
-
 alias ne="~/Documents/Apps/neovide.AppImage"
 
-alias doco="docker compose"
-alias y="yt-dlp"
 
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
@@ -56,18 +53,29 @@ function fish_user_key_bindings
   bind -M insert \cr "_fzf_search_history"
   bind -M insert \cf "_fzf_search_directory"
   bind -M insert \e\cl "_fzf_search_git_log"
+
+  for mode in (bind --list-modes)
+      bind -M $mode ctrl-c cancel-commandline
+  end
 end
 
-if status is-interactive
+if status --is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
-    # fish_hybrid_key_bindings
 
     set fish_cursor_default     block
     set fish_cursor_insert      line
     set fish_cursor_replace_one underscore
     set fish_cursor_replace     underscore
     set fish_cursor_visual      block
+
+    abbr --add --global -- ge "git checkout"
+    abbr --add --global -- gps "gh copilot suggest"
+    abbr --add --global -- gs "git status --short"
+    abbr --add --global -- ga "git add"
+    abbr --add --global -- gp "git push"
+    abbr --add --global -- gm "git commit"
+    abbr --add --global -- c "clear"
 end
 
 zoxide init fish | source
