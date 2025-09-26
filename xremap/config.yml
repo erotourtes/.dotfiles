@@ -20,7 +20,7 @@ modmap:
       CapsLock:
         held: CapsLock
         alone: Esc
-        alone_timeout_millis: 150
+        free_hold: true
       # M_R: CapsLock
 
 default_mode: Insert
@@ -35,9 +35,13 @@ shared:
     - org.gnome.TextEditor
     - libreoffice-writer
 
+  keyboard: &keyboard
+    - /dev/input/event3
 
 keymap:
   - name: CapsLock
+    device:
+      only: *keyboard
     remap:
       CapsLock-h: [left]
       CapsLock-j: [down]
@@ -77,15 +81,21 @@ keymap:
 
 
   - mode: Insert
-    application:
-      only: *apps
+    # application:
+    #   only: *apps
+    device:
+      only: *keyboard
     remap:
       c-leftbrace: [{ set_mode: Normal }, { set_mark: false }]
+
+      alt-c-leftbrace: [{ set_mode: Normal }, { set_mark: false }]
       CapsLock-v: [{ set_mode: Normal }]
 
   - mode: Normal
-    application:
-      only: *apps
+    # application:
+    #   only: *apps
+    device:
+      only: *keyboard
     remap:
       # Navigation
       h: { with_mark: left }
@@ -99,13 +109,13 @@ keymap:
       alt_l-l: [alt-l, { set_mark: false }, { set_mode: Insert }]
 
       # Word navigation
-      w: {with_mark: c-right }
-      b: {with_mark: c-left }
-      e: {with_mark: c-right }
+      w: { with_mark: c-right }
+      b: { with_mark: c-left }
+      e: { with_mark: c-right }
 
       # Line navigation
-      0: {with_mark: home }
-      Shift-4: end
+      0: { with_mark: home }
+      Shift-4: { with_mark: end }
 
       # Page navigation
       Ctrl-u: pageup
@@ -127,11 +137,11 @@ keymap:
 
       # Insert mode
       i: { set_mode: Insert }
-      Shift-i: [home, { set_mode: Insert}]
-      a: [{set_mode: Insert}, right]
-      Shift-a: [end, { set_mode: Insert}]
-      o: [end, enter, { set_mode: Insert}]
-      Shift-o: [home, enter, up, { set_mode: Insert}]
+      Shift-i: [home, { set_mode: Insert }]
+      a: [{set_mode: Insert }, right]
+      Shift-a: [end, { set_mode: Insert }]
+      o: [end, enter, { set_mode: Insert }]
+      Shift-o: [home, enter, up, { set_mode: Insert }]
 
       # Tab changes + Alt-Enter simulation
       C-h: c-shift-tab
