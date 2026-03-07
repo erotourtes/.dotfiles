@@ -2,10 +2,11 @@ th.git = th.git or {}
 th.git.modified_sign = "M"
 th.git.deleted_sign = "D"
 th.git.added_sign = "A"
--- th.git.untracked_sign = "U"
 th.git.ignored_sign = "-"
--- th.git.updated_sign = "U"
-require("git"):setup()
+require("git"):setup {
+	-- Order of status signs showing in the linemode
+	order = 1500,
+}
 
 function Status:name()
 	local h = self._tab.current.hovered

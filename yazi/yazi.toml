@@ -6,6 +6,7 @@ max_height = 1000
 [mgr]
 ratio = [1, 2, 3]
 scrolloff = 8
+show_hidden = true
 
 [[plugin.prepend_fetchers]]
 id   = "git"

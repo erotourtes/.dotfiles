@@ -1,4 +1,5 @@
-# https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml
+# [github](https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml)
+# [site](https://yazi-rs.github.io/docs/configuration/theme/#indicator.padding)
 [mgr]
 border_symbol = " "
 
@@ -15,3 +16,6 @@ sep_inner = { open = "", close = "" }
 sep_outer = { open = "", close = "" }
 active   = { fg = "black", bg = "blue", bold = true }
 inactive = { fg = "blue", bg = "black" }
+
+[indicator]
+padding = { open = "█", close = "█" }
