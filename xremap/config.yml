@@ -23,6 +23,24 @@ modmap:
         free_hold: true
       # M_R: CapsLock
 
+  - name: Acira keyboard
+    device:
+      only:
+        - "ACIRA GXT 867 ACIRA Mouse"
+        - "ACIRA GXT 867 ACIRA Keyboard"
+        - "ACIRA GXT 867 ACIRA"
+    remap:
+      compose: control_r
+
+  - name: Swap Left Alt and Left Super
+    device:
+      not:
+        - MoErgo Glove80 Left Keyboard
+        - Glove80 Keyboard
+    remap:
+      Alt_L: Super_L
+      Super_L: Alt_L
+
 default_mode: Insert
 
 virtual_modifiers:
@@ -37,6 +55,11 @@ shared:
 
   keyboard: &keyboard
     - /dev/input/event3
+    - "ACIRA GXT 867 ACIRA Mouse"
+    - "ACIRA GXT 867 ACIRA Keyboard"
+    - "ACIRA GXT 867 ACIRA"
+    - MoErgo Glove80 Left Keyboard
+    - Glove80 Keyboard
 
 keymap:
   - name: CapsLock
