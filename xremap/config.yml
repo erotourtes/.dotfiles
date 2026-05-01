@@ -21,7 +21,28 @@ modmap:
         held: CapsLock
         alone: Esc
         free_hold: true
-      # M_R: CapsLock
+        # M_R: CapsLock
+
+  - name: Acira keyboard
+    device:
+      only:
+        - "ACIRA GXT 867 ACIRA Mouse"
+        - "ACIRA GXT 867 ACIRA Keyboard"
+        - "ACIRA GXT 867 ACIRA"
+    remap:
+      compose: control_r
+      # Compose: RightCtrl
+      Grave: Esc
+      Esc: Grave
+
+  - name: Swap Left Alt and Left Super
+    device:
+      not:
+        - MoErgo Glove80 Left Keyboard
+        - Glove80 Keyboard
+    remap:
+      Alt_L: Super_L
+      Super_L: Alt_L
 
   - name: Acira keyboard
     device:

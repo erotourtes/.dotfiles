@@ -3,7 +3,18 @@ function fish_prompt
     set -l exit_code $status
 
     if not set -q __prompt_on; or test "$__prompt_on" = 0
-      echo (fish_git_prompt) (paint_last_path)\n(paint_arrow)
+      set -l venv_str ''
+      set -U VIRTUAL_ENV_DISABLE_PROMPT 1
+      if set -q VIRTUAL_ENV
+          set venv_str (string join '' (set_color blue) "(" (basename $VIRTUAL_ENV) ")" (set_color normal))
+      end
+
+
+      # Left-aligned prompt content
+      set -l left_str (string join '' "$venv_str" (fish_git_prompt) " ")
+      echo -n "$left_str"
+
+      echo (paint_last_path)\n(paint_arrow)
       return
     end
 
@@ -87,4 +98,14 @@ end
 
 function visible_length --description 'Return length of string without color codes'
     string join '' $argv | string replace -r '\e\[[0-9;]*m' '' | string length -v
+end
+
+function print_py_env
+      set -U VIRTUAL_ENV_DISABLE_PROMPT 1
+      set -l venv_str ''
+      if set -q VIRTUAL_ENV
+          set venv_str (string join '' (set_color blue) "(" (basename $VIRTUAL_ENV) ")" (set_color normal) " ")
+      end
+
+      echo -n "$venv_str"
 end
