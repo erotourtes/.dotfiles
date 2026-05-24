@@ -18,7 +18,7 @@ end
 
 function set_wallust_theme
   ~/.config/rofi/scripts/change_theme.fish auto.rasi
-  ~/.config/hypr/scripts/change_theme.fish colors-auto.conf
+  ~/.config/hypr/scripts/change_theme.fish colors-auto.lua
   ~/.config/waybar/change_theme.fish auto.css
   ~/.config/swaync/change_theme.fish auto.css
 end
@@ -72,3 +72,4 @@ end
 echo "Refreshing programs"
 update_wallust
 refresh_programs
+hyprctl reload

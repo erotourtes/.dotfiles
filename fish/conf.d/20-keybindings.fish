@@ -1,5 +1,12 @@
 status is-interactive || exit
 
+set fish_cursor_default     block
+set fish_cursor_insert      line
+set fish_cursor_replace_one underscore
+set fish_cursor_replace     underscore
+set fish_cursor_external    line
+set fish_cursor_visual      block
+
 function fish_user_key_bindings
   bind -M insert \cl "accept-autosuggestion"
   bind -M insert \cp "clear -x && commandline -f repaint"
@@ -13,12 +20,6 @@ function fish_user_key_bindings
 end
 
 fish_vi_key_bindings
-
-set fish_cursor_default     block
-set fish_cursor_insert      line
-set fish_cursor_replace_one underscore
-set fish_cursor_replace     underscore
-set fish_cursor_visual      block
 
 abbr --add --global -- ge "git checkout"
 abbr --add --global -- gps "gh copilot suggest"

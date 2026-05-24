@@ -7,6 +7,6 @@ palette = "dark"
 
 [templates]
 rofi = { template = 'rofi.j2', target = '~/.config/rofi/colors/auto.rasi' }
-hypr = { template = 'hypr.j2', target = '~/.config/hypr/configs/colors-auto.conf' }
+hypr = { template = 'hypr.j2', target = '~/.config/hypr/config/colors-auto.lua' }
 waybar = { template = "waybar.j2", target = '~/.config/waybar/colors/auto.css' }
 swaync = { template = "colors.j2", target = '~/.config/swaync/colors/auto.css' }

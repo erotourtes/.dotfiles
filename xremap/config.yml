@@ -35,15 +35,6 @@ modmap:
       Grave: Esc
       Esc: Grave
 
-  - name: Swap Left Alt and Left Super
-    device:
-      not:
-        - MoErgo Glove80 Left Keyboard
-        - Glove80 Keyboard
-    remap:
-      Alt_L: Super_L
-      Super_L: Alt_L
-
   - name: Acira keyboard
     device:
       only:
@@ -104,8 +95,8 @@ keymap:
 
 
   - mode: Insert
-    # application:
-    #   only: *apps
+    application:
+      only: *apps
     device:
       only: *keyboard
     remap:
@@ -115,8 +106,8 @@ keymap:
       CapsLock-v: [{ set_mode: Normal }]
 
   - mode: Normal
-    # application:
-    #   only: *apps
+    application:
+      only: *apps
     device:
       only: *keyboard
     remap:
