@@ -57,8 +57,17 @@ local function run(ctx)
 
     bind(k(mod, "s"), c([[
         hyprctl dispatch "hl.dsp.submap(\"reset\")"
-        and wl-kbptr -c ~/.dotfiles/wl-kbptr/config.ini
-        and sleep 0.01 and hyprctl dispatch movecursor 1 0 and hyprctl dispatch movecursor -1 0
+        and wl-kbptr -c ~/.config/wl-kbptr/config.ini
+        and sleep 0.01
+
+        set pos (hyprctl cursorpos)
+        set coords (string split "," $pos)
+        set x (string trim $coords[1])
+        set y (string trim $coords[2])
+
+        hyprctl dispatch "hl.dsp.cursor.move({ x = "(math "$x + 1")", y = $y })"
+        and hyprctl dispatch "hl.dsp.cursor.move({ x = $x, y = $y })"
+
         and hyprctl dispatch "hl.dsp.submap(\"cursor\")"
     ]]))
     bind(k(mod, "c"), hl.dsp.submap("cursor"))
