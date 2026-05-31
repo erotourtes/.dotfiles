@@ -12,7 +12,7 @@ local function run(ctx)
     hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
     hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
     hl.permission({ binary = "/usr/(bin|local/bin)/hyprlock", type = "screencopy", mode = "allow" })
-    hl.permission({ binary = "~/Documents/Apps/wl-kbptr/bin/wl-kbptr", type = "screencopy", mode = "allow" })
+    hl.permission({ binary = os.getenv("HOME") .. "/Documents/Apps/wl-kbptr/bin/wl-kbptr", type = "screencopy", mode = "allow" })
 end
 
 local M = {

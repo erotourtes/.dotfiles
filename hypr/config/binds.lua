@@ -70,6 +70,7 @@ local function run(ctx)
 
         and hyprctl dispatch "hl.dsp.submap(\"cursor\")"
     ]]))
+    bind(k(mod, "SHIFT", "CTRL", "s"), cmd("pkill wl-kbptr"))
     bind(k(mod, "c"), hl.dsp.submap("cursor"))
     hl.define_submap("cursor", function()
         local bind = helpers.debug_bind(ctx, "config/binds.lua", "cursor")

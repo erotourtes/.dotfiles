@@ -220,10 +220,8 @@ static int open_input(const char *device_name)
     return -1;
 }
 
-static int handle_rel_scroll(int out_fd, const struct input_event *ev, int *wheel_accum, int *hwheel_accum)
+static int handle_rel_scroll(int out_fd, const struct input_event *ev, int *wheel_accum, int *hwheel_accum, int scale)
 {
-    const int scale = 5;
-
     if (ev->code == REL_Y) {
         int hi_res = -ev->value * scale;
         *wheel_accum += hi_res;
@@ -289,8 +287,12 @@ int main(int argc, char **argv)
     }
 
     bool side_down = false;
+    bool precision_down = false;
+    bool precision_key_suppressed = false;
     int wheel_accum = 0;
     int hwheel_accum = 0;
+    const int normal_scale = 5;
+    const int precision_scale = 1;
 
     while (running) {
         struct pollfd pfd = { .fd = in_fd, .events = POLLIN };
@@ -311,11 +313,26 @@ int main(int argc, char **argv)
         while ((bytes = read(in_fd, &ev, sizeof(ev))) == (ssize_t)sizeof(ev)) {
             if (ev.type == EV_KEY && ev.code == BTN_SIDE) {
                 side_down = ev.value != 0;
+                if (!side_down) {
+                    precision_down = false;
+                }
+                continue;
+            }
+
+            if (ev.type == EV_KEY && ev.code == KEY_F && (side_down || precision_key_suppressed)) {
+                if (ev.value != 0 && side_down) {
+                    precision_down = true;
+                    precision_key_suppressed = true;
+                } else if (ev.value == 0) {
+                    precision_down = false;
+                    precision_key_suppressed = false;
+                }
                 continue;
             }
 
             if (side_down && ev.type == EV_REL && (ev.code == REL_X || ev.code == REL_Y)) {
-                if (handle_rel_scroll(out_fd, &ev, &wheel_accum, &hwheel_accum) < 0) {
+                int scale = precision_down ? precision_scale : normal_scale;
+                if (handle_rel_scroll(out_fd, &ev, &wheel_accum, &hwheel_accum, scale) < 0) {
                     running = 0;
                     break;
                 }
