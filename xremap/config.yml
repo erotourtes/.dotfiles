@@ -18,9 +18,10 @@ modmap:
   - name: Global
     remap:
       CapsLock:
-        held: CapsLock
+        held: [CapsLock, BTN_SIDE]
         alone: Esc
         free_hold: true
+        interruptable: true
         # M_R: CapsLock
 
   - name: Acira keyboard

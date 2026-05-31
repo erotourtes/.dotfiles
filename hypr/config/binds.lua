@@ -51,6 +51,44 @@ local function run(ctx)
         bind(k("catchall"), hl.dsp.submap("reset"))
     end)
 
+    local c = function(str)
+        return hl.dsp.exec_cmd("fish -lc '" .. str .. "'")
+    end
+
+    bind(k(mod, "s"), c([[
+        hyprctl dispatch "hl.dsp.submap(\"reset\")"
+        and wl-kbptr -c ~/.dotfiles/wl-kbptr/config.ini
+        and sleep 0.01 and hyprctl dispatch movecursor 1 0 and hyprctl dispatch movecursor -1 0
+        and hyprctl dispatch "hl.dsp.submap(\"cursor\")"
+    ]]))
+    bind(k(mod, "c"), hl.dsp.submap("cursor"))
+    hl.define_submap("cursor", function()
+        local bind = helpers.debug_bind(ctx, "config/binds.lua", "cursor")
+
+        bind(k(mod, "j"), cmd("wlrctl pointer move 0 10"), { repeating = true })
+        bind(k(mod, "k"), cmd("wlrctl pointer move 0 -10"), { repeating = true })
+        bind(k(mod, "l"), cmd("wlrctl pointer move 10 0"), { repeating = true })
+        bind(k(mod, "h"), cmd("wlrctl pointer move -10 0"), { repeating = true })
+        bind(k("j"), cmd("wlrctl pointer move 0 10"), { repeating = true })
+        bind(k("k"), cmd("wlrctl pointer move 0 -10"), { repeating = true })
+        bind(k("l"), cmd("wlrctl pointer move 10 0"), { repeating = true })
+        bind(k("h"), cmd("wlrctl pointer move -10 0"), { repeating = true })
+
+        bind(k(mod, "u"), cmd("wlrctl pointer click left"))
+        bind(k(mod, "i"), cmd("wlrctl pointer click middle"))
+        bind(k(mod, "o"), cmd("wlrctl pointer click right"))
+        bind(k("u"), cmd([[wlrctl pointer click left && hyprctl dispatch "hl.dsp.submap(\"reset\")"]]))
+        bind(k("i"), cmd([[wlrctl pointer click middle && hyprctl dispatch "hl.dsp.submap(\"reset\")"]]))
+        bind(k("o"), cmd([[wlrctl pointer click right && hyprctl dispatch "hl.dsp.submap(\"reset\")"]]))
+
+        bind(k("y"), cmd("wlrctl pointer scroll 10 0"), { repeating = true })
+        bind(k("n"), cmd("wlrctl pointer scroll -10 0"), { repeating = true })
+        bind(k("m"), cmd("wlrctl pointer scroll 0 10"), { repeating = true })
+        bind(k("comma"), cmd("wlrctl pointer scroll 0 -10"), { repeating = true })
+
+        bind(k("escape"), hl.dsp.submap("reset"))
+    end)
+
     bind(k(mod, "SHIFT", "r"), hl.dsp.submap("resize"))
     hl.define_submap("resize", function()
         local bind = helpers.debug_bind(ctx, "config/binds.lua", "resize")

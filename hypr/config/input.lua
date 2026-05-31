@@ -23,7 +23,6 @@ local function run(ctx)
         },
     })
 
-    -- See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
     hl.device({
         name = "dell08e0:00-06cb:cd97-touchpad",
         sensitivity = 0.35,

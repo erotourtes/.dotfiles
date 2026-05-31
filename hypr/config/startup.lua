@@ -15,8 +15,8 @@ local function run(ctx)
 
     hl.on("hyprland.start", function()
         -- start hyprland-session.target as a hack
-        hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE")
-        hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE")
+        hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE")
+        hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE")
         hl.exec_cmd("systemctl --user start hyprland-session.target")
 
         hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 24")
@@ -26,7 +26,8 @@ local function run(ctx)
         hl.exec_cmd("systemctl --user start hyprpolkitagent")
 
         hl.exec_cmd(os.getenv("HOME") .. "/Documents/Apps/python/.venv/bin/safeeyes")
-        hl.exec_cmd(os.getenv("HOME") .. "/.cargo/bin/xremap " .. os.getenv("HOME") .. "/.config/xremap/config.yml --watch=device")
+        hl.exec_cmd(os.getenv("HOME") .. "/.cargo/bin/xremap --mouse --ignore xremap-scroll,trackball-scroll --output-device-name xremap-scroll --watch=device --no-window-logging " .. os.getenv("HOME") .. "/.config/xremap/config.yml")
+        hl.exec_cmd(os.getenv("HOME") .. "/.config/xremap/run-trackball-scroll.bash")
         hl.exec_cmd("waybar")
         hl.exec_cmd("firefox", { workspace = "2 silent" })
         hl.exec_cmd("XDG_CURRENT_DESKTOP=sway flameshot")
