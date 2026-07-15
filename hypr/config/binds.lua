@@ -12,6 +12,30 @@ local function run(ctx)
     bind(k(mod, "return"), cmd(ctx.terminal))
     bind(k(mod, "b"), cmd("pkill -SIGUSR1 waybar"))
     bind(k(mod, "d"), cmd("pkill rofi || rofi -show drun"))
+    bind(k(mod, "SHIFT", "w"), hl.dsp.submap("workspaces"), {
+        description = "Named workspace actions",
+    })
+    hl.define_submap("workspaces", "reset", function()
+        local bind = helpers.debug_bind(ctx, "config/binds.lua", "workspaces")
+
+        bind(k("c"), cmd(scripts_dir .. "/workspace-manager.bash create"))
+        bind(k("m"), cmd(scripts_dir .. "/workspace-manager.bash move"))
+        bind(k("g"), cmd(scripts_dir .. "/workspace-manager.bash go"))
+        bind(k("f"), cmd(scripts_dir .. "/workspace-manager.bash forget"))
+        bind(k("h"), cmd(scripts_dir .. "/workspace-manager.bash harpoon-set"))
+        bind(k("a"), cmd(scripts_dir .. "/workspace-manager.bash"))
+        for i = 1, 4 do
+            bind(k(tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i))
+        end
+        bind(k("escape"), hl.dsp.submap("reset"))
+        bind(k("catchall"), hl.dsp.submap("reset"))
+    end)
+
+    for i = 1, 4 do
+        bind(k(mod, "ALT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i), {
+            description = "Go to workspace harpoon " .. i,
+        })
+    end
 
     bind(k(mod, "SHIFT", "v"), cmd(scripts_dir .. "/ClipManager.sh"))
     bind(k(mod, "SHIFT", "d"), cmd(scripts_dir .. "/RofiEmoji.sh"))
@@ -120,6 +144,17 @@ local function run(ctx)
     bind(k(mod, "SHIFT", "up"), hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
     bind(k(mod, "SHIFT", "down"), hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 
+    bind(k(mod, "w"), hl.dsp.group.toggle())
+    bind(k(mod, "CTRL","l"), hl.dsp.group.next())
+    bind(k(mod, "CTRL", "h"), hl.dsp.group.prev())
+    bind(k(mod, "CTRL", "SHIFT", "l"), hl.dsp.group.move_window({ forward = true }))
+    bind(k(mod, "CTRL", "SHIFT", "h"), hl.dsp.group.move_window({ forward = false }))
+    bind(k(mod, "x"), hl.dsp.group.lock_active("toggle"))
+    for i = 1, 5 do
+        local key = tostring(i)
+        bind(k(mod, "CTRL", key), hl.dsp.group.active({ index = i }))
+    end
+
     bind(k(mod, "tab"), function()
         hl.dispatch(hl.dsp.window.cycle_next())
         hl.dispatch(hl.dsp.window.bring_to_top())
@@ -140,10 +175,12 @@ local function run(ctx)
         bind(k(mod, "j"), hl.dsp.focus({ direction = "d" }))
         bind(k(mod, "k"), hl.dsp.focus({ direction = "u" }))
         bind(k(mod, "l"), hl.dsp.focus({ direction = "r" }))
-        bind(k(mod, "SHIFT", "h"), hl.dsp.window.move({ direction = "l" }))
-        bind(k(mod, "SHIFT", "j"), hl.dsp.window.move({ direction = "d" }))
-        bind(k(mod, "SHIFT", "k"), hl.dsp.window.move({ direction = "u" }))
-        bind(k(mod, "SHIFT", "l"), hl.dsp.window.move({ direction = "r" }))
+        bind(k(mod, "SHIFT", "h"), hl.dsp.window.move({ direction = "l", group_aware = "true" }))
+        bind(k(mod, "SHIFT", "j"), hl.dsp.window.move({ direction = "d", group_aware = "true" }))
+        bind(k(mod, "SHIFT", "k"), hl.dsp.window.move({ direction = "u", group_aware = "true" }))
+        bind(k(mod, "SHIFT", "l"), hl.dsp.window.move({ direction = "r", group_aware = "true" }))
+
+        bind(k(mod, "SHIFT", "q"), hl.dsp.window.close())
     end
 
     bind(k(mod, "minus"), hl.dsp.workspace.toggle_special("scratchpad"))

@@ -61,4 +61,28 @@ function M.debug_bind(ctx, source, scope)
     end
 end
 
+---@alias Layout
+---| "hy3"
+---| "dwindle"
+---| "scrolling"
+---| "default"
+---@param bind_table table<Layout, string>
+function M.layout_bind(bind_table)
+    return function ()
+        local workspace = hl.get_active_special_workspace() or
+                          hl.get_active_workspace()
+
+        if not workspace then
+            return
+        end
+
+        local layout = workspace.tiled_layout
+
+        local cmd = bind_table[layout] or bind_table[layout]
+        if cmd then
+            hl.dispatch(cmd)
+        end
+    end
+end
+
 return M

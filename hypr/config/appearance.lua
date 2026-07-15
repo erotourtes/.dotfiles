@@ -5,6 +5,10 @@ local animations
 ---@type fun(ctx: HyprConfigContext): nil
 local layers
 
+local colors = {
+    inactive = "rgba(595959aa)"
+}
+
 ---@type fun(ctx: HyprConfigContext): nil
 run = function(ctx)
     hl.config({
@@ -13,17 +17,31 @@ run = function(ctx)
             gaps_out = 5,
             border_size = 2,
             col = {
-                active_border = {
-                    colors = {
-                        ctx.colors.accent,
-                        ctx.colors.accent_alt
-                    },
-                    angle = 45
-                },
-                inactive_border = "rgba(595959aa)",
+                active_border = ctx.colors.accent,
+                inactive_border = colors.inactive,
             },
             resize_on_border = true,
             extend_border_grab_area = 25,
+        },
+        group = {
+            auto_group = true,
+            col = {
+                border_active = ctx.colors.accent,
+                border_inactive = colors.inactive,
+                border_locked_active = ctx.colors.accent_alt,
+                border_locked_inactive = colors.inactive,
+            },
+            groupbar = {
+                enabled = true,
+                indicator_height = 5,
+                render_titles = false,
+                col = {
+                    active = ctx.colors.accent,
+                    inactive = colors.inactive,
+                    locked_active = ctx.colors.accent_alt,
+                    locked_inactive = colors.inactive,
+                },
+            },
         },
         decoration = {
             rounding = 5,
@@ -92,7 +110,7 @@ animations = function(ctx)
 
     hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "windowIn", style = "slide" })
     hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "windowIn", style = "slide" })
-    hl.animation({ leaf = "windowsMove", enabled = true, speed = 2.5, bezier = "windowResize" })
+    hl.animation({ leaf = "windowsMove", enabled = false, speed = 2.5, bezier = "windowResize" })
     hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
     hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
     hl.animation({ leaf = "workspaces", enabled = false, speed = 9, bezier = "fast" })
