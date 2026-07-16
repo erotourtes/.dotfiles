@@ -36,15 +36,6 @@ modmap:
       Grave: Esc
       Esc: Grave
 
-  - name: Acira keyboard
-    device:
-      only:
-        - "ACIRA GXT 867 ACIRA Mouse"
-        - "ACIRA GXT 867 ACIRA Keyboard"
-        - "ACIRA GXT 867 ACIRA"
-    remap:
-      compose: control_r
-
   - name: Swap Left Alt and Left Super
     device:
       not:

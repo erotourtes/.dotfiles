@@ -9,11 +9,11 @@ scrolloff = 8
 show_hidden = true
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
+group   = "git"
+url = "*"
 run  = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
+group   = "git"
+url = "*/"
 run  = "git"
