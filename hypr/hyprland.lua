@@ -24,7 +24,9 @@ local ctx = {
 
     monitors = {
         primary = "eDP-1",
-        secondary = "HDMI-A-1",
+        secondary ="DP-1",
+        -- primary = "eDP-1",
+        -- secondary = "HDMI-A-1",
     },
 
     dirs = {

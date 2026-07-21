@@ -144,17 +144,6 @@ local function run(ctx)
     bind(k(mod, "SHIFT", "up"), hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
     bind(k(mod, "SHIFT", "down"), hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 
-    bind(k(mod, "w"), hl.dsp.group.toggle())
-    bind(k(mod, "CTRL","l"), hl.dsp.group.next())
-    bind(k(mod, "CTRL", "h"), hl.dsp.group.prev())
-    bind(k(mod, "CTRL", "SHIFT", "l"), hl.dsp.group.move_window({ forward = true }))
-    bind(k(mod, "CTRL", "SHIFT", "h"), hl.dsp.group.move_window({ forward = false }))
-    bind(k(mod, "x"), hl.dsp.group.lock_active("toggle"))
-    for i = 1, 5 do
-        local key = tostring(i)
-        bind(k(mod, "CTRL", key), hl.dsp.group.active({ index = i }))
-    end
-
     bind(k(mod, "tab"), function()
         hl.dispatch(hl.dsp.window.cycle_next())
         hl.dispatch(hl.dsp.window.bring_to_top())
@@ -181,6 +170,17 @@ local function run(ctx)
         bind(k(mod, "SHIFT", "l"), hl.dsp.window.move({ direction = "r", group_aware = "true" }))
 
         bind(k(mod, "SHIFT", "q"), hl.dsp.window.close())
+
+        bind(k(mod, "w"), hl.dsp.group.toggle())
+        bind(k(mod, "CTRL","l"), hl.dsp.group.next())
+        bind(k(mod, "CTRL", "h"), hl.dsp.group.prev())
+        bind(k(mod, "CTRL", "SHIFT", "l"), hl.dsp.group.move_window({ forward = true }))
+        bind(k(mod, "CTRL", "SHIFT", "h"), hl.dsp.group.move_window({ forward = false }))
+        bind(k(mod, "x"), hl.dsp.group.lock_active("toggle"))
+        for i = 1, 5 do
+            local key = tostring(i)
+            bind(k(mod, "CTRL", key), hl.dsp.group.active({ index = i }))
+        end
     end
 
     bind(k(mod, "minus"), hl.dsp.workspace.toggle_special("scratchpad"))
