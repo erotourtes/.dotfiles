@@ -26,6 +26,7 @@ local function run(ctx)
         bind(k("a"), cmd(scripts_dir .. "/workspace-manager.bash"))
         for i = 1, 4 do
             bind(k(tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i))
+            bind(k("SHIFT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-move " .. i))
         end
         bind(k("escape"), hl.dsp.submap("reset"))
         bind(k("catchall"), hl.dsp.submap("reset"))
@@ -33,6 +34,9 @@ local function run(ctx)
 
     for i = 1, 4 do
         bind(k(mod, "ALT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i), {
+            description = "Go to workspace harpoon " .. i,
+        })
+        bind(k(mod, "ALT", "SHIFT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-move " .. i), {
             description = "Go to workspace harpoon " .. i,
         })
     end

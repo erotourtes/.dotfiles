@@ -38,7 +38,7 @@ choose_workspace() {
 }
 
 create_workspace() {
-    local name
+    local name slot already_saved=false
     name=$(rofi -dmenu -p 'New workspace') || return
     name=$(printf '%s' "$name" | xargs)
 
@@ -49,8 +49,18 @@ create_workspace() {
         return 1
     fi
 
+    if [[ -f $state_file ]] && grep -Fqx -- "$name" "$state_file"; then
+        already_saved=true
+    fi
+
     save_name "$name"
-    notify "Saved \"$name\". Move a window there when ready."
+    if [[ $already_saved == false ]] && slot=$(assign_next_harpoon "$name"); then
+        notify "Saved \"$name\" to harpoon $slot. Move a window there when ready."
+    elif [[ $already_saved == false ]]; then
+        notify "Saved \"$name\". All harpoon slots are occupied."
+    else
+        notify "\"$name\" is already saved."
+    fi
 }
 
 move_active_window() {
@@ -83,13 +93,21 @@ focus_workspace() {
 }
 
 forget_workspace() {
-    local name tmp
+    local name tmp slot harpoon_name
     name=$(choose_workspace 'Forget saved workspace') || return
     [[ -n $name && -f $state_file ]] || return
 
     tmp=$(mktemp "${state_file}.XXXXXX")
     grep -Fvx -- "$name" "$state_file" >"$tmp" || true
     mv "$tmp" "$state_file"
+
+    for slot in 1 2 3 4; do
+        [[ -f $harpoon_dir/$slot ]] || continue
+        harpoon_name=$(<"$harpoon_dir/$slot")
+        if [[ $harpoon_name == "$name" ]]; then
+            : >"$harpoon_dir/$slot"
+        fi
+    done
 }
 
 choose_harpoon_slot() {
@@ -102,6 +120,21 @@ choose_harpoon_slot() {
         fi
         printf '%s  %s\n' "$slot" "$name"
     done | rofi -dmenu -i -p 'Harpoon slot'
+}
+
+assign_next_harpoon() {
+    local name=$1 slot
+    mkdir -p "$harpoon_dir"
+
+    for slot in 1 2 3 4; do
+        if [[ ! -s $harpoon_dir/$slot ]]; then
+            printf '%s\n' "$name" >"$harpoon_dir/$slot"
+            printf '%s\n' "$slot"
+            return 0
+        fi
+    done
+
+    return 1
 }
 
 set_harpoon() {
@@ -139,6 +172,40 @@ go_to_harpoon() {
     hyprctl dispatch "hl.dsp.focus({ workspace = \"name:$name\" })"
 }
 
+move_to_harpoon() {
+    local slot=$1 name
+    [[ $slot =~ ^[1-4]$ && -f $harpoon_dir/$slot ]] || {
+        notify "Harpoon $slot is not set."
+        return 1
+    }
+
+    name=$(<"$harpoon_dir/$slot")
+    valid_name "$name" || {
+        notify "Harpoon $slot has an invalid workspace name."
+        return 1
+    }
+
+    hyprctl eval "
+        local hy3_loaded = false
+
+        for _, plugin in pairs(hl.get_loaded_plugins()) do
+            if plugin.name == 'hy3' then
+                hy3_loaded = true
+                break
+            end
+        end
+
+        if hy3_loaded then
+            local hy3 = hl.plugin.hy3
+            hl.dispatch(hy3.move_to_workspace('name:$name'))
+        else
+            hl.dispatch(hl.dsp.window.move({
+                workspace = 'name:$name'
+            }))
+        end
+    "
+}
+
 case ${1:-menu} in
     create)
         create_workspace
@@ -157,6 +224,9 @@ case ${1:-menu} in
         ;;
     harpoon-go)
         go_to_harpoon "${2:-}"
+        ;;
+    harpoon-move)
+        move_to_harpoon "${2:-}"
         ;;
     menu)
         action=$(printf '%s\n' \
