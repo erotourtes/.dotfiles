@@ -44,7 +44,17 @@ local function run(ctx)
         end, {
             description = "Go to workspace harpoon " .. i,
         })
+        bind(k(mod, "MOD5", tostring(i)), function()
+            workspaces.go_to_harpoon(i)
+        end, {
+            description = "Go to workspace harpoon " .. i,
+        })
         bind(k(mod, "ALT", "SHIFT", tostring(i)), function()
+            workspaces.move_to_harpoon(i)
+        end, {
+            description = "Move window to workspace harpoon " .. i,
+        })
+        bind(k(mod, "MOD5", "SHIFT", tostring(i)), function()
             workspaces.move_to_harpoon(i)
         end, {
             description = "Move window to workspace harpoon " .. i,
