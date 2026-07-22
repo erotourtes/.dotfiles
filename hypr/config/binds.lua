@@ -1,4 +1,5 @@
 local helpers = require("./config/helpers")
+local workspace_manager = require("./config/workspace_manager")
 
 ---@type fun(ctx: HyprConfigContext): nil
 local function run(ctx)
@@ -8,6 +9,7 @@ local function run(ctx)
 
     local mod = ctx.keys.mod
     local scripts_dir = ctx.dirs.scripts
+    local workspaces = workspace_manager.new(ctx)
 
     bind(k(mod, "return"), cmd(ctx.terminal))
     bind(k(mod, "b"), cmd("pkill -SIGUSR1 waybar"))
@@ -18,26 +20,34 @@ local function run(ctx)
     hl.define_submap("workspaces", "reset", function()
         local bind = helpers.debug_bind(ctx, "config/binds.lua", "workspaces")
 
-        bind(k("c"), cmd(scripts_dir .. "/workspace-manager.bash create"))
-        bind(k("m"), cmd(scripts_dir .. "/workspace-manager.bash move"))
-        bind(k("g"), cmd(scripts_dir .. "/workspace-manager.bash go"))
-        bind(k("f"), cmd(scripts_dir .. "/workspace-manager.bash forget"))
-        bind(k("h"), cmd(scripts_dir .. "/workspace-manager.bash harpoon-set"))
-        bind(k("a"), cmd(scripts_dir .. "/workspace-manager.bash"))
+        bind(k("c"), workspaces.create)
+        bind(k("m"), workspaces.move)
+        bind(k("g"), workspaces.go)
+        bind(k("f"), workspaces.forget)
+        bind(k("h"), workspaces.set_harpoon)
+        bind(k("a"), workspaces.menu)
         for i = 1, 4 do
-            bind(k(tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i))
-            bind(k("SHIFT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-move " .. i))
+            bind(k(tostring(i)), function()
+                workspaces.go_to_harpoon(i)
+            end)
+            bind(k("SHIFT", tostring(i)), function()
+                workspaces.move_to_harpoon(i)
+            end)
         end
         bind(k("escape"), hl.dsp.submap("reset"))
         bind(k("catchall"), hl.dsp.submap("reset"))
     end)
 
     for i = 1, 4 do
-        bind(k(mod, "ALT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-go " .. i), {
+        bind(k(mod, "ALT", tostring(i)), function()
+            workspaces.go_to_harpoon(i)
+        end, {
             description = "Go to workspace harpoon " .. i,
         })
-        bind(k(mod, "ALT", "SHIFT", tostring(i)), cmd(scripts_dir .. "/workspace-manager.bash harpoon-move " .. i), {
-            description = "Go to workspace harpoon " .. i,
+        bind(k(mod, "ALT", "SHIFT", tostring(i)), function()
+            workspaces.move_to_harpoon(i)
+        end, {
+            description = "Move window to workspace harpoon " .. i,
         })
     end
 
