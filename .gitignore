@@ -23,6 +23,7 @@
 !kitty/
 !wallust/
 !wl-kbptr/
+!firefox/
 
 waybar/colors/auto.css
 waybar/colors/color.css

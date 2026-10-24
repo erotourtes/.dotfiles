@@ -1,0 +1,23 @@
+/* Hide firefox top bar  */
+#TabsToolbar-customization-target {
+  display: none;
+}
+
+/* Hide horizontal tabs at the top of the window */
+#TabsToolbar {
+    visibility: collapse !important;
+}
+
+/* hide new firefox tool top bar*/
+sidebar-panel-header,
+#sidebar-panel-header {
+    display: none !important;
+}
+
+/* Remove left spacing from the bookmarks toolbar */
+#PersonalToolbar {
+    padding-inline-start: 4px !important;
+}
+#sidebar-box {
+    padding-inline-start: 0 !important;
+}
