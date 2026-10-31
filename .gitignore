@@ -24,6 +24,7 @@
 !wallust/
 !wl-kbptr/
 !firefox/
+!nautilus/
 
 waybar/colors/auto.css
 waybar/colors/color.css
