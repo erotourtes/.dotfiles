@@ -1,5 +1,12 @@
 ---@type fun(ctx: HyprConfigContext): nil
 local function run(ctx)
+    -- Keep application maximize requests from covering other tiled windows.
+    hl.window_rule({
+        name = "suppress-maximize-events",
+        match = { class = ".*" },
+        suppress_event = "maximize",
+    })
+
     hl.workspace_rule({ workspace = "1", monitor = ctx.monitors.secondary })
     hl.workspace_rule({ workspace = "2", monitor = ctx.monitors.secondary })
     hl.workspace_rule({ workspace = "3", monitor = ctx.monitors.secondary })

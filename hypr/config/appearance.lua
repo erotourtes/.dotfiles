@@ -60,6 +60,13 @@ run = function(ctx)
                 render_power = 4,
                 color = "rgba(0000002A)",
             },
+            wobble = {
+                enabled = false,
+                stiffness = 500,
+                damping = 24,
+                mass = 0.5,
+                intensity = 0.15,
+            },
             active_opacity = 1.0,
             inactive_opacity = 0.999,
             fullscreen_opacity = 1.0,
